@@ -1,0 +1,67 @@
+doctype html
+html(lang="en").no-js
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title Yellr Frontpage
+    meta(name="description", content="Yellr Frontpage")
+    include _head.jade
+
+  body#index
+    h1.visuallyhidden Yellr Frontpage
+    a(href="#main").visuallyhidden Skip to main content
+    .container
+      include _header.jade
+
+      div#main.main
+        header
+          .row
+            .columns
+              h1 Frontpage
+          .row
+            .columns.medium-8
+              ul#stories-list.list-style-none
+                li
+                  h3.t1
+                    a(href="article.html") After Fire, FAA Orders Review Of Contingency Plans, Security
+                  p The chief of the Federal Aviation Administration has ordered the agency to review the contingency plans and security protocols of all its major facilities. The order from Administrator Michael P. Huerta came three days after a contractor set fire to an FAA air traffic facility in Aurora, Illinois.
+                li
+                  h3.t1
+                    a(href="article.html") California Enacts 'Yes Means Yes' Law, Defining Sexual Consent
+                  p Gov. Jerry Brown has signed a bill into law that makes California the first in the nation to have a clear definition of when people agree to sex. The law goes further than the common "no means no" standard, which has been blamed for bringing ambiguity into investigations of sexual assault cases.
+                li
+                  h3.t1
+                    a(href="article.html") Afghanistan's New President: 'Hold Me Accountable'
+                  p "Hold me accountable" is the message from Afghanistan's new president, Ashraf Ghani Ahmadzai, who took the oath of office today, succeeding Hamid Karzai, a leader many accused of lacking accountability.
+              //- ul#stories-list.list-style-none
+              div.load-more-btn Load more
+            .columns.medium-4
+              div.contribute-wrapper
+                div.contribute-div
+                  h3.t4 Contribute to your community
+                  p.
+                    This site is powered by Yellr, a platform focused on giving people a voice.
+                    You can submit any type of content that you think is important. Pictures, videos
+                    audio recordings, or just plain text, anything.
+                  p.
+                    You can contribute by clicking the "Submit Tip" button above or by downloading the accompanying app!
+                  a(href="/static/Yellr-debug.apk").download-btn Download Yellr
+
+
+          .row
+            .columns
+              h2.t1 Submit Tip
+
+              div.forms-wrapper
+                //- text
+                form#text-form.submit-form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  input(type="hidden", name="media_type", value="text")
+                  input(type="text", name="media_caption", placeholder="Title (optional)")
+                  textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
+
+
+
+
+      include _footer.jade
+
+    include _scripts.jade

@@ -1,0 +1,48 @@
+@import "mixins";
+@import "elements";
+@import "typography";
+
+
+
+.download-btn {
+  display: block;
+  text-decoration: none;
+  background: $green;
+  color: $white;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  border-radius: 4px;
+  transition: background 0.3s ease-out;
+  margin-top: 2rem;
+  max-width: 14rem;
+  &:hover {
+    cursor: pointer;
+    background: darken($green, 10%);
+  }
+}
+.contribute-div {
+  background: #ddd;
+  padding: 2rem 1rem;
+}
+
+.load-more-btn {
+  margin-bottom: 1.5rem;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+
+.submit-news-tip-btn {
+  background: $blue;
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: background 0.3s ease-out;
+  &:hover {
+    cursor: pointer;
+    background: lighten($blue, 10%);
+  }
+}

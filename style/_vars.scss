@@ -1,0 +1,100 @@
+$blue: #2980b9;
+$dark-blue: #2c3e50;
+$yellow:  lighten(rgb(255, 204, 4), 3%);
+$dark-yellow: darken(rgb(255, 204, 4), 5%);
+$light-yellow: lighten(rgb(255, 204, 4), 15%);
+$white: #ebebeb;
+$black: #2f2f2f;
+$red: #ff6347;
+$green: #1abc9c;
+$grey: #444;
+
+$font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+$line-height: 1.4;
+
+
+
+
+
+// 34. Top Bar
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// $include-html-top-bar-classes: $include-html-classes;
+
+// Background color for the top bar
+$topbar-bg-color: $yellow;
+// $topbar-bg: $topbar-bg-color;
+
+// Height and margin
+// $topbar-height: rem-calc(45);
+// $topbar-margin-bottom: 0;
+
+// Controlling the styles for the title in the top bar
+// $topbar-title-weight: $font-weight-normal;
+// $topbar-title-font-size: rem-calc(17);
+
+// Set the link colors and styles for top-level nav
+$topbar-link-color: $black;
+$topbar-link-color-hover: $black;
+$topbar-link-color-active: $black;
+$topbar-link-color-active-hover: $black;
+// $topbar-link-weight: $font-weight-normal;
+// $topbar-link-font-size: rem-calc(13);
+// $topbar-link-hover-lightness: -10%; // Darken by 10%
+// $topbar-link-bg: $topbar-bg;
+$topbar-link-bg-hover: $dark-yellow;
+// $topbar-link-bg-color-hover: $charcoal;
+// $topbar-link-bg-active: $primary-color;
+// $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
+// $topbar-link-font-family: $body-font-family;
+// $topbar-link-text-transform: none;
+// $topbar-link-padding: ($topbar-height / 3);
+// $topbar-back-link-size: rem-calc(18);
+// $topbar-link-dropdown-padding: rem-calc(20);
+// $topbar-button-font-size: 0.75rem;
+// $topbar-button-top: 7px;
+
+// Style the top bar dropdown elements
+$topbar-dropdown-bg: $dark-yellow;
+$topbar-dropdown-link-color: $black;
+// $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
+$topbar-dropdown-link-bg: $dark-yellow;
+$topbar-dropdown-link-bg-hover: $dark-yellow;
+// $topbar-dropdown-link-weight: $font-weight-normal;
+// $topbar-dropdown-toggle-size: 5px;
+// $topbar-dropdown-toggle-color: $white;
+// $topbar-dropdown-toggle-alpha: 0.4;
+
+// $topbar-dropdown-label-color: $monsoon;
+// $topbar-dropdown-label-text-transform: uppercase;
+// $topbar-dropdown-label-font-weight: $font-weight-bold;
+// $topbar-dropdown-label-font-size: rem-calc(10);
+// $topbar-dropdown-label-bg: $oil;
+
+// Top menu icon styles
+// $topbar-menu-link-transform: uppercase;
+// $topbar-menu-link-font-size: rem-calc(13);
+// $topbar-menu-link-weight: $font-weight-bold;
+// $topbar-menu-link-color: $white;
+// $topbar-menu-icon-color: $white;
+// $topbar-menu-link-color-toggled: $jumbo;
+// $topbar-menu-icon-color-toggled: $jumbo;
+// $topbar-menu-icon-position: $opposite-direction; // Change to $default-float for a left menu icon
+
+// Transitions and breakpoint styles
+// $topbar-transition-speed: 300ms;
+// Using rem-calc for the below breakpoint causes issues with top bar
+// $topbar-breakpoint: #{lower-bound($medium-range)}; // Change to 9999px for always mobile layout
+// $topbar-media-query: $medium-up;
+
+// Top-bar input styles
+// $topbar-input-height: rem-calc(28);
+
+// Divider Styles
+// $topbar-divider-border-bottom: solid 1px scale-color($topbar-bg-color, $lightness: 13%);
+// $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
+
+// Sticky Class
+// $topbar-sticky-class: ".sticky";
+// $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+// $topbar-dropdown-arrows: true; //Set false to remove the \00bb >> text from dropdown subnavigation li//
