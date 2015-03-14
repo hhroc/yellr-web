@@ -5036,10 +5036,10 @@ meta.foundation-mq-topbar {
       color: #2f2f2f; }
     .top-bar-section ul li.active > a {
       background: #008CBA;
-      color: #2f2f2f; }
+      color: #ebebeb; }
       .top-bar-section ul li.active > a:hover {
         background: #0078a0;
-        color: #2f2f2f; }
+        color: #ebebeb; }
   .top-bar-section .has-form {
     padding: 0.9375rem; }
   .top-bar-section .has-dropdown {
@@ -5169,11 +5169,11 @@ meta.foundation-mq-topbar {
     .top-bar-section li.active:not(.has-form) a:not(.button) {
       padding: 0 0.9375rem;
       line-height: 2.8125rem;
-      color: #2f2f2f;
+      color: #ebebeb;
       background: #008CBA; }
       .top-bar-section li.active:not(.has-form) a:not(.button):hover {
         background: #0078a0;
-        color: #2f2f2f; }
+        color: #ebebeb; }
     .top-bar-section .has-dropdown > a {
       padding-right: 2.1875rem !important; }
       .top-bar-section .has-dropdown > a:after {
@@ -5270,7 +5270,7 @@ meta.foundation-mq-topbar {
     color: #2f2f2f; }
   .no-js .top-bar-section ul li:active > a {
     background: #008CBA;
-    color: #2f2f2f; }
+    color: #ebebeb; }
   .no-js .top-bar-section .has-dropdown:hover > .dropdown {
     display: block;
     position: static !important;

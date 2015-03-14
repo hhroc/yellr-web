@@ -1,0 +1,72 @@
+doctype html
+html(lang="en").no-js
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title Yellr Frontpage
+    meta(name="description", content="Yellr Frontpage")
+    include _head.jade
+
+  body#index
+    h1.visuallyhidden Yellr Frontpage
+    a(href="#main").visuallyhidden Skip to main content
+    .container
+      include _header.jade
+
+      div#main.main
+        header
+          .row
+            .columns
+              h1 Submit Tip
+
+        main.page-main
+          .row
+            .columns.medium-8
+              div.forms-wrapper
+                //- text
+                h2 Text
+                form#text-form.submit-form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  input(type="hidden", name="media_type", value="text")
+                  input(type="text", name="media_caption", placeholder="Title (optional)")
+                  textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
+                  input(type="submit", value="Submit").button
+
+                //- photo
+                h2 Photo
+                form#photo-form.submit-form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  input(type="hidden", name="media_type", value="text")
+                  input(type="text", name="media_caption", placeholder="Title (optional)")
+                  textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
+                  input(type="submit", value="Submit").button
+
+                //- video
+                h2 Video
+                form#video-form.submit-form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  input(type="hidden", name="media_type", value="text")
+                  input(type="text", name="media_caption", placeholder="Title (optional)")
+                  textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
+                  input(type="submit", value="Submit").button
+
+                //- audio
+                h2 Audio
+                form#audio-form.submit-form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  input(type="hidden", name="media_type", value="text")
+                  input(type="text", name="media_caption", placeholder="Title (optional)")
+                  textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
+                  input(type="submit", value="Submit").button
+
+            .columns.medium-4
+              h2 Latest Assignments
+              ul.latest-assignments-list
+                li
+                  a(href="#") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                li
+                  a(href="#") Ratione voluptatum, doloremque sapiente consequuntur doloribus
+                li
+                  a(href="#") Alias officia ut impedit explicabo voluptate eos aliquam ab
+                li
+                  a(href="#") Distinctio earum sequi inventore sint vitae pariatur
+
+      include _footer.jade
+
+    include _scripts.jade
