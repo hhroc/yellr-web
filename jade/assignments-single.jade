@@ -1,0 +1,45 @@
+doctype html
+html(lang="en").no-js
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title Yellr Frontpage
+    meta(name="description", content="Yellr Frontpage")
+    include _head.jade
+
+  body#index
+    h1.visuallyhidden Yellr Frontpage
+    a(href="#main").visuallyhidden Skip to main content
+    .container
+      include _header.jade
+
+      div#main.main
+        header
+          .row
+            .columns
+              h1 Assignment title
+        main.page-main
+          .row
+            .columns
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit quasi velit quis ex fugit ea ullam quod architecto rem laborum reprehenderit, provident aperiam, magni corrupti dolorum! Voluptate, quas voluptatem minus?
+              a(href="#").button Reply
+        footer
+          .row
+            .columns
+              h2 Responses
+              ul.assignment-responses-list
+                li
+                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis error eaque iste ullam, saepe quaerat porro vel, obcaecati aut earum praesentium dignissimos rem harum quisquam, magnam quas perspiciatis tempora deleniti!
+                li
+                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis error eaque iste ullam, saepe quaerat porro vel, obcaecati aut earum praesentium dignissimos rem harum quisquam, magnam quas perspiciatis tempora deleniti!
+                li
+                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis error eaque iste ullam, saepe quaerat porro vel, obcaecati aut earum praesentium dignissimos rem harum quisquam, magnam quas perspiciatis tempora deleniti!
+                li
+                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis error eaque iste ullam, saepe quaerat porro vel, obcaecati aut earum praesentium dignissimos rem harum quisquam, magnam quas perspiciatis tempora deleniti!
+                li
+                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis error eaque iste ullam, saepe quaerat porro vel, obcaecati aut earum praesentium dignissimos rem harum quisquam, magnam quas perspiciatis tempora deleniti!
+
+
+      include _footer.jade
+
+    include _scripts.jade

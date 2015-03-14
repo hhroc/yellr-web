@@ -13,6 +13,7 @@ module.exports = function(grunt) {
         js_libs_dir: 'js/vendor',
         js_files: [
             'js/frontpage/init.js',
+            'js/frontpage/submit.js',
         ],
         output: {
             folder:                 './',
