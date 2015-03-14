@@ -1,0 +1,28 @@
+doctype html
+html(lang="en").no-js
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title Yellr Frontpage
+    meta(name="description", content="Yellr Frontpage")
+    include _head.jade
+
+  body#index
+    h1.visuallyhidden Yellr Frontpage
+    a(href="#main").visuallyhidden Skip to main content
+    .container
+      include _header.jade
+
+      div#main.main
+        header
+          .row
+            .columns
+              h1 Frontpage
+        main.page-main
+          .row
+            .columns
+
+
+      include _footer.jade
+
+    include _scripts.jade

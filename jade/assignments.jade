@@ -1,0 +1,54 @@
+doctype html
+html(lang="en").no-js
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title Yellr Frontpage
+    meta(name="description", content="Yellr Frontpage")
+    include _head.jade
+
+  body#index
+    h1.visuallyhidden Yellr Frontpage
+    a(href="#main").visuallyhidden Skip to main content
+    .container
+      include _header.jade
+
+      div#main.main
+        header
+          .row
+            .columns
+              h1 Assignments
+        main.page-main
+          .row
+            .columns
+              ul.assignments-list
+                li
+                  h2
+                    a(href="assignments-single.html") Assignment title
+                  p Nemo odio mollitia nulla dolores ipsum similique fugiat id animi error natus. At beatae, pariatur laborum reprehenderit assumenda dignissimos iure vel ut!
+                  a(href="assignments-single.html") View assignment
+                li
+                  h2
+                    a(href="assignments-single.html") Assignment title
+                  p Nemo odio mollitia nulla dolores ipsum similique fugiat id animi error natus. At beatae, pariatur laborum reprehenderit assumenda dignissimos iure vel ut!
+                  a(href="assignments-single.html") View assignment
+                li
+                  h2
+                    a(href="assignments-single.html") Assignment title
+                  p Nemo odio mollitia nulla dolores ipsum similique fugiat id animi error natus. At beatae, pariatur laborum reprehenderit assumenda dignissimos iure vel ut!
+                  a(href="assignments-single.html") View assignment
+                li
+                  h2
+                    a(href="assignments-single.html") Assignment title
+                  p Nemo odio mollitia nulla dolores ipsum similique fugiat id animi error natus. At beatae, pariatur laborum reprehenderit assumenda dignissimos iure vel ut!
+                  a(href="assignments-single.html") View assignment
+                li
+                  h2
+                    a(href="assignments-single.html") Assignment title
+                  p Nemo odio mollitia nulla dolores ipsum similique fugiat id animi error natus. At beatae, pariatur laborum reprehenderit assumenda dignissimos iure vel ut!
+                  a(href="assignments-single.html") View assignment
+
+
+      include _footer.jade
+
+    include _scripts.jade
