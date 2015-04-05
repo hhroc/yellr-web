@@ -50,11 +50,31 @@ html(lang="en").no-js
 
             .columns.medium-4
               div
-                h3 Contribute to your community
-                p.
-                  This site is powered by Yellr, a platform focused on giving people a voice.
-                  You can submit any type of content that you think is important. Pictures, videos
-                  audio recordings, or just plain text, anything.
+                p
+                  strong Submit tip
+                p
+                  em All posts on Yellr are anonymous.
+                .form-container(data-media="text")
+                  textarea#textarea(rows="2", columns="10", placeholder="I said hey. What's going on?")
+                  .right
+                    div.button
+                      i.fa.fa-plus
+                      | &nbsp;
+                      i.fa.fa-video-camera
+                    div.button
+                      i.fa.fa-plus
+                      | &nbsp;
+                      i.fa.fa-camera
+                    div.button
+                      i.fa.fa-plus
+                      | &nbsp;
+                      i.fa.fa-headphones
+                  input(type="submit", value="Submit")#submit-tip.button.right
+
+
+              //- div
+                p
+                  strong Contribute to your community
                 p.
                   You can contribute by clicking the "Submit Tip" button above or by downloading the accompanying app!
                 a(href="#").button.download-btn Download Yellr

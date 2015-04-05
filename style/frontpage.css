@@ -8255,19 +8255,6 @@ p {
   background: #148f77;
 }
 
-.contribute-div {
-  padding: 2rem 1rem; 
-  background: #ddd;
-}
-
-.load-more-btn {
-  margin-bottom: 1.5rem;
-}
-.load-more-btn:hover {
-  text-decoration: underline; 
-  cursor: pointer;
-}
-
 .submit-news-tip-btn {
   padding: .5rem 1.5rem;
   font-size: .875rem;

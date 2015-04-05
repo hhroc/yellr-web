@@ -4,6 +4,12 @@
 
 
 
+
+
+
+// ----------------------------------------
+// ----------------------------------------
+
 .download-btn {
   display: block;
   text-decoration: none;
@@ -18,18 +24,6 @@
   &:hover {
     cursor: pointer;
     background: darken($green, 10%);
-  }
-}
-.contribute-div {
-  background: #ddd;
-  padding: 2rem 1rem;
-}
-
-.load-more-btn {
-  margin-bottom: 1.5rem;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
   }
 }
 

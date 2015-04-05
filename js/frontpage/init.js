@@ -46,6 +46,16 @@
 
             console.log(this.SETTINGS);
 
+
+            $('#submit-tip').click(function () {
+              console.log('get all the forms');
+            });
+
+            $('#textarea').keydown(function (event) {
+                $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
+            });
+
+
         },
         // ----------------------------------------
 
