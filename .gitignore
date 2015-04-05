@@ -1,3 +1,4 @@
 *.html
+!bin/*.html
 node_modules
 design

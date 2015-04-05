@@ -104,14 +104,12 @@ html(lang="en").no-js
                 .form-container
                   //- default to text form
                   //- text
-                  //- WORKS
-                  //- form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
                     input(type="hidden", name="media_type", value="text")
                     input(type="text", name="media_caption", placeholder="Title (optional)")
                     textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
 
                   //- images
-                  //- WORKS
                   //- form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
                     input(type="hidden", name="media_type", value="image")
                     input(type="file", name="media_file", multiple)
@@ -125,7 +123,7 @@ html(lang="en").no-js
 
 
                   //- audio
-                  form(data-media-type="audio", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                  //- form(data-media-type="audio", method="post", accept-charset="utf-8", enctype="multipart/form-data")
                     input(type="hidden", name="media_type", value="audio")
                     input(type="file", name="media_file", multiple)
                     textarea(name="media_text", rows="2", columns="10", placeholder="Add description")

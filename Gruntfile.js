@@ -222,10 +222,10 @@ module.exports = function(grunt) {
     // ----------------------------------------
     grunt.registerTask('build', function() {
         grunt.task.run([
-            'sass:build',       // build css
-            'autoprefixer:build',
-            'concat:build',     // build js
-            'jade:build',       // build html
+            'sass',       // build css
+            'autoprefixer',
+            'concat',     // build js
+            'jade',       // build html
         ]);
     });
 
@@ -233,10 +233,10 @@ module.exports = function(grunt) {
         // minify everything
         grunt.task.run([
             'build',
-            'csscomb:build',
-            'csslint:build',
-            'cssmin:build',
-            'uglify:build',
+            'csscomb',
+            'csslint',
+            'cssmin',
+            'uglify',
             'usebanner'
         ]);
     });
