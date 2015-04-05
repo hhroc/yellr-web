@@ -37,16 +37,15 @@
 
 
             // generate the URLS
-            this.URLS.assignments =    this.BASE_URL+'get_assignments.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.notifications =  this.BASE_URL+'get_notifications.json?client_id='+this.UUID,
-            this.URLS.messages =       this.BASE_URL+'get_messages.json?client_id='+this.UUID,
-            this.URLS.stories =        this.BASE_URL+'get_stories.json?client_id='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code,
-            this.URLS.profile =        this.BASE_URL+'todo',
-            this.URLS.upload =         this.BASE_URL+'upload_media.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.post =           this.BASE_URL+'publish_post.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.server_info =    this.BASE_URL+'server_info.json',
-            this.URLS.send_message =   this.BASE_URL+'create_response_message.json'
-
+            this.URLS.assignments =     this.BASE_URL+'get_assignments.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
+            this.URLS.stories =         this.BASE_URL+'get_stories.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code,
+            this.URLS.notifications =   this.BASE_URL+'get_notifications.json?client_id='+this.UUID,
+            this.URLS.messages =        this.BASE_URL+'get_messages.json?client_id='+this.UUID,
+            this.URLS.profile =         this.BASE_URL+'todo',
+            this.URLS.upload =          this.BASE_URL+'upload_media.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
+            this.URLS.post =            this.BASE_URL+'publish_post.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
+            this.URLS.server_info =     this.BASE_URL+'server_info.json',
+            this.URLS.send_message =    this.BASE_URL+'create_response_message.json'
 
 
             $('#submit-tip').click(function () {
@@ -60,16 +59,37 @@
 
 
             // get latest assignments for homepage
-            if ($('#latest-assignments').length) {
+            if ($('#index').length) {
+
+                // make call to the server
+
+                // 1 - get assignments
                 yellr.modules.server.get_assignments(function (assignments) {
+
+                    // render JSON into HTML with Handlerbars.js
                     yellr.utils.render_template({
                         template: '#assignment-li-template',
                         target: '#latest-assignments',
                         context: {
                             assignments: assignments
                         }
-                    })
+                    });
                 });
+
+                // 2 - get stories
+                yellr.modules.server.get_stories(function (stories) {
+
+                    // render JSON into HTML with Handlerbars.js
+                    yellr.utils.render_template({
+                        template: '#stories-li-template',
+                        target: '#latest-stories',
+                        context: {
+                            stories: stories
+                        }
+                    });
+                });
+
+
             }
 
         },
@@ -414,7 +434,6 @@
         get_assignments: function (callback) {
 
             /**
-             * returns an array
              * if a callback is provided it will pass the array to that function
              */
 
@@ -423,16 +442,35 @@
 
                 if (response.success) {
 
-                    if (callback) {
-                        callback(response.assignments);
-                    }
-                    else {
-                        return response.assignments;
-                    }
+                    if (callback) callback(response.assignments);
+                    else console.log(response.assignments);
+
                 } else {
+
                     console.log('lol - error in get_assignments');
+
                 }
             });
+
+        },
+
+        get_stories: function (callback) {
+
+            // load the things
+            $.getJSON(yellr.URLS.stories, function (response) {
+
+                if (response.success) {
+
+                    if (callback) callback(response.stories);
+                    else console.log(response.stories);
+
+                } else {
+
+                    console.log('lol - error in get_stories');
+
+                }
+            });
+
 
         }
 

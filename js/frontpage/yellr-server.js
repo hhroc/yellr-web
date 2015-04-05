@@ -36,7 +36,6 @@
         get_assignments: function (callback) {
 
             /**
-             * returns an array
              * if a callback is provided it will pass the array to that function
              */
 
@@ -45,16 +44,35 @@
 
                 if (response.success) {
 
-                    if (callback) {
-                        callback(response.assignments);
-                    }
-                    else {
-                        return response.assignments;
-                    }
+                    if (callback) callback(response.assignments);
+                    else console.log(response.assignments);
+
                 } else {
+
                     console.log('lol - error in get_assignments');
+
                 }
             });
+
+        },
+
+        get_stories: function (callback) {
+
+            // load the things
+            $.getJSON(yellr.URLS.stories, function (response) {
+
+                if (response.success) {
+
+                    if (callback) callback(response.stories);
+                    else console.log(response.stories);
+
+                } else {
+
+                    console.log('lol - error in get_stories');
+
+                }
+            });
+
 
         }
 
