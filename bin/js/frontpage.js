@@ -45,7 +45,8 @@
             this.URLS.upload =          this.BASE_URL+'upload_media.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
             this.URLS.post =            this.BASE_URL+'publish_post.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
             this.URLS.server_info =     this.BASE_URL+'server_info.json',
-            this.URLS.send_message =    this.BASE_URL+'create_response_message.json'
+            this.URLS.send_message =    this.BASE_URL+'create_response_message.json',
+            this.URLS.get_local_posts = this.BASE_URL+'get_local_posts.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code
 
 
             $('#submit-tip').click(function () {
@@ -76,6 +77,7 @@
                     });
                 });
 
+
                 // 2 - get stories
                 yellr.modules.server.get_stories(function (stories) {
 
@@ -90,6 +92,18 @@
                 });
 
 
+                // 3 - get local posts
+                yellr.modules.server.get_local_posts(function (local_posts) {
+
+                    // render JSON into HTML with Handlerbars.js
+                    yellr.utils.render_template({
+                        template: '#latest-posts-li-template',
+                        target: '#latest-posts',
+                        context: {
+                            local_posts: local_posts
+                        }
+                    });
+                });
             }
 
         },
@@ -454,6 +468,7 @@
 
         },
 
+
         get_stories: function (callback) {
 
             // load the things
@@ -470,8 +485,26 @@
 
                 }
             });
+        },
 
 
+        get_local_posts: function (callback) {
+
+            // load the things
+            $.getJSON(yellr.URLS.get_local_posts, function (response) {
+
+                console.log(response);
+                // if (response.success) {
+
+                //     if (callback) callback(response.stories);
+                //     else console.log(response.stories);
+
+                // } else {
+
+                //     console.log('lol - error in get_local_posts');
+
+                // }
+            });
         }
 
     }

@@ -74,14 +74,13 @@
                         <h3><a href="#">{{title}}</a></h3>
                         <p>{{description}}</p>
                         <p>{{top_text}}</p>
-                        <p>{{author_last_name}}</p>
+                        <p>{{author_first_name}} {{author_last_name}}</p>
+                        <p>{{author_email}}</p>
+                        <p>{{author_organization}}</p>
                         <p>{{banner_media_file_name}}</p>
-                        <p>{{author_first_name}}</p>
                         <p>{{story_unique_id}}</p>
                         <p>{{tags}}</p>
-                        <p>{{author_organization}}</p>
                         <p>{{banner_media_id}}</p>
-                        <p>{{author_email}}</p>
                         <p>{{edited_datetime}}</p>
                         <p>{{publish_datetime}}</p>
                         <div>{{{contents_rendered}}}</div>
@@ -112,6 +111,24 @@
                   <input type="submit" value="Submit" id="submit-tip" class="button right">
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="columns">
+              <h2>Latest Posts</h2>
+              <ul id="latest-posts" class="latest-posts-list"></ul>
+              <script id="latest-posts-li-template" type="text/x-handlebars-template">
+                {{#each latest_posts}}
+                  <li>
+                    <p>response to {{question_text}}</p>
+                  </li>
+                {{/each}}
+                
+                
+                
+                
+                
+              </script>
             </div>
           </div>
         </main>

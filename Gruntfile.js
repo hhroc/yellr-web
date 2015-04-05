@@ -17,7 +17,7 @@ module.exports = function(grunt) {
             'js/frontpage/yellr-server.js',
         ],
         output: {
-            folder:                 './',
+            folder:                 './bin/',
             css_folder:                 'style/',
             css_filename:                   'frontpage.css',
             css_filename_minified:          'frontpage.min.css',

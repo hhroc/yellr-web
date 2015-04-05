@@ -79,14 +79,13 @@ html(lang="en").no-js
                         <h3><a href="#">{{title}}</a></h3>
                         <p>{{description}}</p>
                         <p>{{top_text}}</p>
-                        <p>{{author_last_name}}</p>
+                        <p>{{author_first_name}} {{author_last_name}}</p>
+                        <p>{{author_email}}</p>
+                        <p>{{author_organization}}</p>
                         <p>{{banner_media_file_name}}</p>
-                        <p>{{author_first_name}}</p>
                         <p>{{story_unique_id}}</p>
                         <p>{{tags}}</p>
-                        <p>{{author_organization}}</p>
                         <p>{{banner_media_id}}</p>
-                        <p>{{author_email}}</p>
                         <p>{{edited_datetime}}</p>
                         <p>{{publish_datetime}}</p>
                         <div>{{{contents_rendered}}}</div>
@@ -144,15 +143,44 @@ html(lang="en").no-js
                   input(type="submit", value="Submit")#submit-tip.button.right
 
 
+          .row
+            .columns
+              h2 Latest Posts
+              ul#latest-posts.latest-posts-list
+              //- {
+              //-     "last_name": null,
+              //-     "language_code": "en",
+              //-     "post_id": 5,
+              //-     "verified_user": false,
+              //-     "post_datetime": "2015-03-27 15:58:23.122724",
+              //-     "media_objects": [
+              //-         {
+              //-             "media_id": "9b6b9682-1bad-479f-8d1c-440a8f2bb1d3",
+              //-             "preview_file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112p.jpg",
+              //-             "file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112.jpg",
+              //-             "media_text": "",
+              //-             "caption": "I like our little city :).",
+              //-             "media_type_description": "An Image.",
+              //-             "media_type_name": "image"
+              //-         }
+              //-     ],
+              //-     "first_name": null,
+              //-     "question_text": "How will you be spending New Years Eve?",
+              //-     "is_up_vote": 0,
+              //-     "down_vote_count": 0,
+              //-     "has_voted": 0,
+              //-     "language_name": "English",
+              //-     "up_vote_count": 1
+              //- }
+              script#latest-posts-li-template(type="text/x-handlebars-template").
+                {{#each latest_posts}}
+                  <li>
+                    <p>response to {{question_text}}</p>
+                  </li>
+                {{/each}}
 
 
 
-              //- div
-                p
-                  strong Contribute to your community
-                p.
-                  You can contribute by clicking the "Submit Tip" button above or by downloading the accompanying app!
-                a(href="#").button.download-btn Download Yellr
 
 
       include _footer.jade

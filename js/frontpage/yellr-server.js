@@ -56,6 +56,7 @@
 
         },
 
+
         get_stories: function (callback) {
 
             // load the things
@@ -72,8 +73,26 @@
 
                 }
             });
+        },
 
 
+        get_local_posts: function (callback) {
+
+            // load the things
+            $.getJSON(yellr.URLS.get_local_posts, function (response) {
+
+                console.log(response);
+                // if (response.success) {
+
+                //     if (callback) callback(response.stories);
+                //     else console.log(response.stories);
+
+                // } else {
+
+                //     console.log('lol - error in get_local_posts');
+
+                // }
+            });
         }
 
     }
