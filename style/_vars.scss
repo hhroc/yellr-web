@@ -22,7 +22,8 @@ $line-height: 1.4;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $yellow;
+$topbar-bg-color: $black;
+// $topbar-bg-color: $yellow;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -34,8 +35,10 @@ $topbar-bg-color: $yellow;
 // $topbar-title-font-size: rem-calc(17);
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: $black;
-$topbar-link-color-hover: $black;
+$topbar-link-color: $white;
+$topbar-link-color-hover: $white;
+// $topbar-link-color: $black;
+// $topbar-link-color-hover: $black;
 $topbar-link-color-active: $white;
 $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;

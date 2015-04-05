@@ -5997,7 +5997,7 @@ meta.foundation-mq-topbar {
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
   width: 100%;
-  background: #ffcf13;
+  background: #2f2f2f;
 }
 .contain-to-grid .top-bar {
   margin-bottom: 0;
@@ -6032,7 +6032,7 @@ meta.foundation-mq-topbar {
   margin-bottom: 0; 
   overflow: hidden;
   line-height: 2.8125rem;
-  background: #ffcf13;
+  background: #2f2f2f;
 }
 .top-bar ul {
   margin-bottom: 0;
@@ -6081,7 +6081,7 @@ meta.foundation-mq-topbar {
   width: 75%;
   padding: 0 .9375rem; 
   font-weight: normal;
-  color: #2f2f2f;
+  color: #ebebeb;
 }
 .top-bar .toggle-topbar {
   position: absolute;
@@ -6096,7 +6096,7 @@ meta.foundation-mq-topbar {
   font-size: .8125rem;
   font-weight: bold;
   line-height: 2.8125rem; 
-  color: #2f2f2f;
+  color: #ebebeb;
   text-transform: uppercase;
 }
 .top-bar .toggle-topbar.menu-icon {
@@ -6131,7 +6131,7 @@ meta.foundation-mq-topbar {
   background: transparent;
 }
 .top-bar.expanded .title-area {
-  background: #ffcf13;
+  background: #2f2f2f;
 }
 .top-bar.expanded .toggle-topbar a {
   color: #888;
@@ -6161,7 +6161,7 @@ meta.foundation-mq-topbar {
   width: 100%; 
   height: 1px;
   clear: both;
-  border-top: solid 1px #896d00;
+  border-top: solid 1px #181818;
 }
 .top-bar-section ul li {
   background: #eaba00;
@@ -6174,7 +6174,7 @@ meta.foundation-mq-topbar {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: .8125rem;
   font-weight: normal;
-  color: #2f2f2f;
+  color: #ebebeb;
   text-transform: none;
 }
 .top-bar-section ul li > a.button {
@@ -6294,7 +6294,7 @@ meta.foundation-mq-topbar {
   color: #ebebeb;
 }
 .top-bar-section ul li:hover:not(.has-form) > a {
-  color: #2f2f2f; 
+  color: #ebebeb; 
   background: #eaba00;
   background-color: #555;
 }
@@ -6373,7 +6373,7 @@ meta.foundation-mq-topbar {
 }
 .top-bar-section .dropdown li.title h5 a, .top-bar-section .dropdown li.parent-link a {
   display: block; 
-  color: #2f2f2f;
+  color: #ebebeb;
 }
 .top-bar-section .dropdown li.title h5 a:hover, .top-bar-section .dropdown li.parent-link a:hover {
   background: none;
@@ -6400,7 +6400,7 @@ meta.foundation-mq-topbar {
 @media only screen and (min-width:40.063em) {
   .top-bar {
     overflow: visible; 
-    background: #ffcf13;
+    background: #2f2f2f;
   }
   .top-bar:before, .top-bar:after {
     display: table; 
@@ -6425,7 +6425,7 @@ meta.foundation-mq-topbar {
     font-size: .875rem;
   }
   .top-bar.expanded {
-    background: #ffcf13;
+    background: #2f2f2f;
   }
 
   .contain-to-grid .top-bar {
@@ -6452,14 +6452,14 @@ meta.foundation-mq-topbar {
     display: none;
   }
   .top-bar-section li.hover > a:not(.button) {
-    color: #2f2f2f; 
+    color: #ebebeb; 
     background: #eaba00;
     background-color: #555;
   }
   .top-bar-section li:not(.has-form) a:not(.button) {
     padding: 0 .9375rem;
     line-height: 2.8125rem;
-    background: #ffcf13;
+    background: #2f2f2f;
   }
   .top-bar-section li:not(.has-form) a:not(.button):hover {
     background: #eaba00; 
@@ -6544,7 +6544,7 @@ meta.foundation-mq-topbar {
     background: #eaba00;
   }
   .top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
-    color: #2f2f2f;
+    color: #ebebeb;
     background: #eaba00; 
     background-color: #555;
   }
@@ -6561,13 +6561,13 @@ meta.foundation-mq-topbar {
     height: 2.8125rem;
     clear: none;
     border-top: none;
-    border-right: solid 1px #ffd532;
+    border-right: solid 1px #4a4a4a;
     border-bottom: none;
   }
   .top-bar-section .has-form {
     height: 2.8125rem; 
     padding: 0 .9375rem;
-    background: #ffcf13;
+    background: #2f2f2f;
   }
   .top-bar-section .right li .dropdown {
     right: 0; 
@@ -6585,7 +6585,7 @@ meta.foundation-mq-topbar {
   }
 
   .no-js .top-bar-section ul li:hover > a {
-    color: #2f2f2f; 
+    color: #ebebeb; 
     background: #eaba00;
     background-color: #555;
   }
@@ -8234,6 +8234,12 @@ p {
 .t7 {
   display: block; 
   font-size: 1.125em;
+}
+
+.homepage-header {
+  padding: 5rem 0;
+  text-align: center; 
+  background-color: #ffcf13;
 }
 
 .download-btn {

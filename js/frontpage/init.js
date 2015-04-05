@@ -3,7 +3,7 @@
 
     window.yellr = {
 
-        tag: 'Yellr Frontpage',
+        tag: 'Y E L L R',
 
         modules: {},
 
@@ -21,7 +21,7 @@
         // ----------------------------------------
         init: function () {
 
-            console.log(this.tag);
+            // console.log(this.tag);
 
             // initialize all modules
             for (var module in this.modules) {
@@ -38,17 +38,18 @@
             this.URLS.messages =       this.BASE_URL+'get_messages.json?client_id='+this.UUID,
             this.URLS.stories =        this.BASE_URL+'get_stories.json?client_id='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code,
             this.URLS.profile =        this.BASE_URL+'todo',
-            this.URLS.upload =         this.BASE_URL+'upload_media.json',
-            this.URLS.post =           this.BASE_URL+'publish_post.json',
+            this.URLS.upload =         this.BASE_URL+'upload_media.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
+            this.URLS.post =           this.BASE_URL+'publish_post.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
             this.URLS.server_info =    this.BASE_URL+'server_info.json',
             this.URLS.send_message =   this.BASE_URL+'create_response_message.json'
-            console.log(this.URLS);
 
-            console.log(this.SETTINGS);
+            // console.log(this.URLS);
+
+            // console.log(this.SETTINGS);
 
 
             $('#submit-tip').click(function () {
-              console.log('get all the forms');
+                yellr.modules.submit.submit_tip();
             });
 
             $('#textarea').keydown(function (event) {

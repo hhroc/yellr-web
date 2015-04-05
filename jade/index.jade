@@ -14,13 +14,14 @@ html(lang="en").no-js
       include _header.jade
 
       div#main.main
-        header
+        header.homepage-header
           .row
             .columns
-              h1 Latest Stories
+              h1 Yellr
         main.page-main
           .row
             .columns.medium-8
+              h2 Assignments
               ul.latest-stories-list
                 li
                   h2
@@ -54,8 +55,36 @@ html(lang="en").no-js
                   strong Submit tip
                 p
                   em All posts on Yellr are anonymous.
-                .form-container(data-media="text")
-                  textarea#textarea(rows="2", columns="10", placeholder="I said hey. What's going on?")
+                p Curious about how we protect your identity? <a href="#">Click here to learn more.</a>
+                .form-container
+                  //- default to text form
+                  //- text
+                  //- WORKS
+                  //- form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                    input(type="hidden", name="media_type", value="text")
+                    input(type="text", name="media_caption", placeholder="Title (optional)")
+                    textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
+
+                  //- images
+                  //- WORKS
+                  //- form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                    input(type="hidden", name="media_type", value="image")
+                    input(type="file", name="media_file", multiple)
+                    textarea(name="media_text", rows="2", columns="10", placeholder="Add description (optional)")
+
+                  //- video
+                  //- form(data-media-type="video", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                    input(type="hidden", name="media_type", value="video")
+                    textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
+                    input(type="file", name="media_file", multiple)
+
+
+                  //- audio
+                  form(data-media-type="audio", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                    input(type="hidden", name="media_type", value="audio")
+                    input(type="file", name="media_file", multiple)
+                    textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
+
                   .right
                     div.button
                       i.fa.fa-plus
@@ -70,6 +99,9 @@ html(lang="en").no-js
                       | &nbsp;
                       i.fa.fa-headphones
                   input(type="submit", value="Submit")#submit-tip.button.right
+
+
+
 
 
               //- div
