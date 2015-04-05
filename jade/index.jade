@@ -18,36 +18,50 @@ html(lang="en").no-js
           .row
             .columns
               h1 Yellr
+              p Rochester, New York <br/>
+                small B E T A
+
         main.page-main
           .row
             .columns.medium-8
               h2 Assignments
-              ul.latest-stories-list
+              //- ul.latest-stories-list
+                //- sample <li> markup
                 li
                   h2
                     a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
                   a(href="article.html") Read
-                li
-                  h2
-                    a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
-                  a(href="article.html") Read
-                li
-                  h2
-                    a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
-                  a(href="article.html") Read
-                li
-                  h2
-                    a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
-                  a(href="article.html") Read
-                li
-                  h2
-                    a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
-                  a(href="article.html") Read
+              ul#latest-assignments.latest-stories-list
+
+                //- assignment_id: 1
+                //- bottom_right_lat: -90
+                //- bottom_right_lng: 180
+                //- description: "Tell us what you think of Yellr! The good, the bad and the ugly!"
+                //- expire_datetime: "2015-12-31 23:59:59"
+                //- has_responded: false
+                //- language_code: "en"
+                //- name: "Yellr Feedback - World Wide"
+                //- organization: "Rochester Institute of Technology"
+                //- organization_description: "RIT"
+                //- post_count: 62
+                //- publish_datetime: "2015-02-18 19:19:19"
+                //- question_text: "What do you think of Yellr!?"
+                //- question_type_id: 1
+                //- top_left_lat: 90
+                //- top_left_lng: -180
+              script#assignment-li-template(type="text/x-handlebars-template").
+                {{#each assignments}}
+                  <li>
+                    <h2><a href="#">{{question_text}}</a></h2>
+                    <p>{{description}}</p>
+                  </li>
+                {{/each}}
+
+
+
+
+
 
             .columns.medium-4
               div

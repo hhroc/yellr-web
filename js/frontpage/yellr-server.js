@@ -33,40 +33,28 @@
         },
         // ----------------------------------------
 
-        get_assignments: function () {
-            console.log('get_assignments');
-            // get_assignments.json?client_id=<client_id>&language_code=<language_code>&lat=<lat>&lng=<lng>
+        get_assignments: function (callback) {
 
+            /**
+             * returns an array
+             * if a callback is provided it will pass the array to that function
+             */
 
             // load the things
             $.getJSON(yellr.URLS.assignments, function (response) {
-                console.log(response);
+
                 if (response.success) {
 
-                    // // parse UTC time
-                    // response[dataType] = response[dataType].filter(function (val, i, arr) {
-                    //   if (val.expire_datetime) val.expire_datetime = moment(val.expire_datetime).fromNow(true);
-                    //   return true;
-                    // });
-
-
-                    // // set the new data to the DATA object
-                    // yellr.DATA[dataType] = response[dataType];
-                    // yellr.utils.save();
-
+                    if (callback) {
+                        callback(response.assignments);
+                    }
+                    else {
+                        return response.assignments;
+                    }
                 } else {
-                    console.log('lol');
-                    // yellr.utils.notify('Something went wrong loading '+dataType + ' from the server.');
+                    console.log('lol - error in get_assignments');
                 }
-            }).done(function () {
-                console.log('done');
-              // if (callback) callback();
             });
-
-
-
-
-
 
         }
 

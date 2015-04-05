@@ -8236,10 +8236,17 @@ p {
   font-size: 1.125em;
 }
 
+.main {
+  margin-top: 2.8125rem;
+}
+
 .homepage-header {
   padding: 5rem 0;
   text-align: center; 
   background-color: #ffcf13;
+}
+.homepage-header h1 {
+  margin-bottom: 2rem;
 }
 
 .download-btn {

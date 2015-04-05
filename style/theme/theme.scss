@@ -2,11 +2,18 @@
 @import "elements";
 @import "typography";
 
+.main {
+    margin-top: $topbar-height;
+}
 
 .homepage-header {
     padding: 5rem 0;
     background-color: $yellow;
     text-align: center;
+
+    h1 {
+        margin-bottom: 2rem;
+    }
 }
 
 

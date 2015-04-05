@@ -21,8 +21,6 @@
         // ----------------------------------------
         init: function () {
 
-            // console.log(this.tag);
-
             // initialize all modules
             for (var module in this.modules) {
                 this.modules[module].init();
@@ -30,10 +28,10 @@
 
             // generate the UUID
             this.UUID = this.utils.guid();
-            console.log('UUID created: ', this.UUID);
+
 
             // generate the URLS
-            this.URLS.assignments =    this.BASE_URL+'get_assignments.json?client_id='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
+            this.URLS.assignments =    this.BASE_URL+'get_assignments.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
             this.URLS.notifications =  this.BASE_URL+'get_notifications.json?client_id='+this.UUID,
             this.URLS.messages =       this.BASE_URL+'get_messages.json?client_id='+this.UUID,
             this.URLS.stories =        this.BASE_URL+'get_stories.json?client_id='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code,
@@ -43,9 +41,6 @@
             this.URLS.server_info =    this.BASE_URL+'server_info.json',
             this.URLS.send_message =   this.BASE_URL+'create_response_message.json'
 
-            // console.log(this.URLS);
-
-            // console.log(this.SETTINGS);
 
 
             $('#submit-tip').click(function () {
@@ -56,6 +51,20 @@
                 $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
             });
 
+
+
+            // get latest assignments for homepage
+            if ($('#latest-assignments').length) {
+                yellr.modules.server.get_assignments(function (assignments) {
+                    yellr.utils.render_template({
+                        template: '#assignment-li-template',
+                        target: '#latest-assignments',
+                        context: {
+                            assignments: assignments
+                        }
+                    })
+                });
+            }
 
         },
         // ----------------------------------------
@@ -101,7 +110,39 @@
                 }
 
                 return uuid.join('');
+            },
+
+            render_template: function(settings) {
+                /**
+                * Dependencies: Handlebar.js, zepto.js (or jQuery.js)
+                *
+                * settings = {
+                *   template: '#script-id',
+                *   target: '#query-string',
+                *   context: {}
+                * }
+                */
+
+
+                // get Handlebar template
+                if (!settings.template || settings.template ==='') {
+                    // if template is empty, clear HTML of target
+                    $(settings.target).html('');
+                    return;
+                }
+
+                var template = Handlebars.compile($(settings.template).html());
+
+                // render it (check it we have a context)
+                var html = template( settings.context ? settings.context : {} );
+
+                // replace html, or return HTML frag
+                if (settings.append) $(settings.target).append(html);
+                else if (settings.prepend) $(settings.target).prepend(html);
+                else $(settings.target).html(html);
+
             }
+
 
         }
     }
