@@ -2,7 +2,25 @@
 @import "elements";
 @import "typography";
 
+.main {
+    margin-top: $topbar-height;
+}
 
+.homepage-header {
+    padding: 5rem 0;
+    background-color: $yellow;
+    text-align: center;
+
+    h1 {
+        margin-bottom: 2rem;
+    }
+}
+
+
+
+
+// ----------------------------------------
+// ----------------------------------------
 
 .download-btn {
   display: block;
@@ -18,18 +36,6 @@
   &:hover {
     cursor: pointer;
     background: darken($green, 10%);
-  }
-}
-.contribute-div {
-  background: #ddd;
-  padding: 2rem 1rem;
-}
-
-.load-more-btn {
-  margin-bottom: 1.5rem;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
   }
 }
 

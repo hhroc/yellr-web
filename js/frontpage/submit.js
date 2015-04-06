@@ -45,6 +45,43 @@
             // });
 
 
+            // [POST]
+            // media_type:
+
+            //     This field holds the type of the media.  Valid types include:
+
+            //         text - a text post.  there is no limit on it's length.
+            //         audio - an audio recording (should be in mp3 format)
+            //         video - a video recording (should be in mpg format)
+            //         image - an image (should be in jpg format)
+
+            //     If a media_type of 'text' is used, then the media_text field must contain a non-zero length string.  If
+            //     any other media_type is used, then the media_file field must contain file data.  Not following these
+            //     rules will produce a { "success": false } response.
+
+            // [POST]
+            // media_file:
+
+            //     This is of type file, and will be the media object that is being uploaded.  This is an optional field,
+            //     but the media_type filed must be 'text' if this is not included, else { "success": false } will be
+            //     returned.
+
+            // [POST]
+            // media_text
+
+            //     This is of type text, and will hold the text of the media post.  This is an optional field, but the
+            //     media_type field must be 'audio', 'video', or 'image' if this is not include, else a
+            //     { "success": false } will be returned.
+
+            // [POST]
+            // media_caption
+
+            //     This is of type text, and will hold an additional description of the media type.  This is an optional
+            //     and does not need to be included.
+
+
+
+
         // // add extra media
         // document.querySelector('#add-extra-media div.flex').onclick = function(e) {
         //   if (e.target.nodeName === 'I' || e.target.nodeName === 'DIV') {
@@ -61,32 +98,28 @@
         //   }
         // };
 
-        // // hook up the submit button
-        // document.querySelector('.submit-btn').onclick = function (e) {
-        //   e.preventDefault();
-        //   yellr.utils.submit_form();
-        // }
-
-
 
 
         },
 
 
 
-        submit_form: function(callback) {
+        submit_tip: function(callback) {
 
-            var forms = document.querySelectorAll('.forms-wrapper form'),
-                form_counter = 0,
-                media_objects = [];
+            console.log('get all the forms');
 
-            console.log(forms.length);
-            for (var i = 0; i < forms.length; i++) {
-              var form = forms[i];
+            var $forms = $('.form-container form');
+            var media_objects = [];
+
+
+            console.log($forms.length);
+
+            for (var i = 0; i < $forms.length; i++) {
+              var form = $forms[i];
               console.log(i, form);
 
               // make sure the form is not empty [returns true or false]
-              if (yellr.utils.validate_form(form)) {
+              if (this.validate_form(form)) {
 
                 $(form).ajaxSubmit({
                   url: yellr.URLS.upload,
@@ -94,17 +127,18 @@
                     client_id: yellr.UUID
                   },
                   success: function (response) {
+                    console.log(response);
                     if (response.success) {
                       // add the media_id to our local array
-                      form_counter++;
                       media_objects.push(response.media_id);
-                      if (form_counter === forms.length) {
-                        yellr.utils.publish_post(media_objects, function () {
+                      if (media_objects.length === $forms.length) {
+                        yellr.modules.submit.publish_post(media_objects, function () {
+                            console.log('lol things?S');
                           // reset to text
-                          yellr.utils.render_template({
-                            template: '#text-form-template',
-                            target: '.forms-wrapper'
-                          });
+                          // yellr.utils.render_template({
+                          //   template: '#text-form-template',
+                          //   target: '.forms-wrapper'
+                          // });
                         });
                       }
                     } else {
@@ -115,33 +149,38 @@
                   clearForm: true
                 });
                 // end ajaxSubmit
-              } else {
-                // keep counter going, little hackish
-                form_counter++;
               }
             }
         },
 
 
         validate_form: function (form) {
-        // return value:
-        var valid = false;
 
-        // what kind of form is it?
-        if (form.id === 'text-form') {
-          // make sure textarea is not empty
-          if (form.querySelector('textarea').value !== '') valid = true;
-          else yellr.utils.notify('The text form is empty.');
+            var $form = $(form);
+            var valid = false;
 
-        } else {
-          // we are submitting media
-          // make sure input(name="media_file") is not empty
-          if (form.querySelector('input[name="media_file"]').value) valid = true;
-          else yellr.utils.notify('Missing media file.');
-        }
+            // what kind of form is it?
+            if ($form.attr('data-media-type') === 'text') {
+                // make sure textarea is not empty
+                console.log($form.find('textarea').val());
+                if ($form.find('textarea').val() !== '') valid = true;
+                else {
+                    alert('form is empty');
+                    // yellr.utils.notify('The text form is empty.');
+                }
+
+            } else {
+                // we are submitting media
+                // make sure input(name="media_file") is not empty
+                if (form.querySelector('input[name="media_file"]').value) valid = true;
+                else {
+                    alert('form is empty');
+                    yellr.utils.notify('Missing media file.');
+                }
+            }
 
 
-        return valid;
+            return valid;
         },
 
 
@@ -149,20 +188,20 @@
         publish_post: function(media_objects, callback) {
 
             $.post(yellr.URLS.post, {
-              title: 'Web Submission',
-              client_id: yellr.UUID,
-              assignment_id: null,
-              language_code: yellr.SETTINGS.language.code,
-              lat: yellr.SETTINGS.lat,
-              lng: yellr.SETTINGS.lng,
-              media_objects: JSON.stringify(media_objects)
+                title: 'Web Submission',
+                client_id: yellr.UUID,
+                assignment_id: null,
+                language_code: yellr.SETTINGS.language.code,
+                lat: yellr.SETTINGS.lat,
+                lng: yellr.SETTINGS.lng,
+                media_objects: JSON.stringify(media_objects)
             }, function(e) {
-              console.log('post published');
-              // generate new UUID after every post to help protect anonymity
-              yellr.UUID = yellr.utils.guid();
-              yellr.utils.save();
+                console.log('post published');
+                // generate new UUID after every post to help protect anonymity
+                yellr.UUID = yellr.utils.guid();
+                // yellr.utils.save();
             }).done(function () {
-              if (callback) callback();
+                if (callback) callback();
             });
 
         }

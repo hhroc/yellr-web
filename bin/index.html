@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Yellr Frontpage</title>
+    <meta name="description" content="Yellr Frontpage">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/frontpage.css">
+    <script src="js/vendor/modernizr.min.js"></script>
+  </head>
+  <body id="index">
+    <h1 class="visuallyhidden">Yellr Frontpage</h1><a href="#main" class="visuallyhidden">Skip to main content</a>
+    <div class="container">
+      <div class="fixed">
+        <header class="header">
+          <nav data-topbar role="navigation" class="top-bar">
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="/">Home</a></h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+            <div class="top-bar-section">
+              <ul class="right">
+                <li class="has-dropdown"><a href="assignments.html">Assignments</a>
+                  <ul class="dropdown">
+                    <li><a href="#">First link in dropdown</a></li>
+                  </ul>
+                </li>
+                <li><a href="news.html">News</a></li>
+                <li class="active"><a href="submit-tip.html">Submit Tip</a></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <div id="main" class="main">
+        <header class="homepage-header">
+          <div class="row">
+            <div class="columns">
+              <h1>Yellr</h1>
+              <p>Rochester, New York <br/><small>B E T A</small></p>
+            </div>
+          </div>
+        </header>
+        <main class="page-main">
+          <div class="row">
+            <div class="columns medium-8">
+              <div class="row">
+                <div class="columns medium-7">
+                  <h2>Assignments</h2>
+                  <ul id="latest-assignments" class="latest-assignments-list"></ul>
+                  <script id="assignment-li-template" type="text/x-handlebars-template">
+                    {{#each assignments}}
+                      <li>
+                        <h3><a href="#">{{question_text}}</a></h3>
+                        <p>{{description}}</p>
+                      </li>
+                    {{/each}}
+                    
+                    
+                    
+                    
+                  </script>
+                </div>
+                <div class="columns medium-5">
+                  <h2>Latest Stories</h2>
+                  <ul id="latest-stories" class="latest-stories-list"></ul>
+                  <script id="stories-li-template" type="text/x-handlebars-template">
+                    {{#each stories}}
+                      <li>
+                        <h3><a href="#">{{title}}</a></h3>
+                        <p>{{description}}</p>
+                        <p>{{top_text}}</p>
+                        <p>{{author_first_name}} {{author_last_name}}</p>
+                        <p>{{author_email}}</p>
+                        <p>{{author_organization}}</p>
+                        <p>{{banner_media_file_name}}</p>
+                        <p>{{story_unique_id}}</p>
+                        <p>{{tags}}</p>
+                        <p>{{banner_media_id}}</p>
+                        <p>{{edited_datetime}}</p>
+                        <p>{{publish_datetime}}</p>
+                        <div>{{{contents_rendered}}}</div>
+                      </li>
+                    {{/each}}
+                    
+                    
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="columns medium-4">
+              <div>
+                <p><strong>Submit tip</strong></p>
+                <p><em>All posts on Yellr are anonymous.</em></p>
+                <p>Curious about how we protect your identity? <a href="#">Click here to learn more.</a></p>
+                <div class="form-container">
+                  <form data-media-type="text" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <input type="hidden" name="media_type" value="text">
+                    <input type="text" name="media_caption" placeholder="Title (optional)">
+                    <textarea name="media_text" rows="2" columns="10" placeholder="I said hey. What's going on?"></textarea>
+                  </form>
+                  <div class="right">
+                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-video-camera"></i></div>
+                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-camera"></i></div>
+                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-headphones"></i></div>
+                  </div>
+                  <input type="submit" value="Submit" id="submit-tip" class="button right">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="columns">
+              <h2>Latest Posts</h2>
+              <ul id="latest-posts" class="latest-posts-list"></ul>
+              <script id="latest-posts-li-template" type="text/x-handlebars-template">
+                {{#each latest_posts}}
+                  <li>
+                    <p>response to {{question_text}}</p>
+                  </li>
+                {{/each}}
+                
+                
+                
+                
+                
+              </script>
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer class="footer">
+        <div class="row">
+          <div class="columns">
+            <p><small>Yellr frontpage</small></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/jquery.form.min.js"></script>
+    <script src="js/vendor/fastclick.min.js"></script>
+    <script src="js/vendor/foundation.min.js"></script>
+    <script src="js/vendor/handlebars.js"></script>
+    <script src="js/frontpage.js"></script>
+  </body>
+</html>

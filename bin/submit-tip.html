@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Yellr Frontpage</title>
+    <meta name="description" content="Yellr Frontpage">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/frontpage.css">
+    <script src="js/vendor/modernizr.min.js"></script>
+  </head>
+  <body id="index">
+    <h1 class="visuallyhidden">Yellr Frontpage</h1><a href="#main" class="visuallyhidden">Skip to main content</a>
+    <div class="container">
+      <div class="fixed">
+        <header class="header">
+          <nav data-topbar role="navigation" class="top-bar">
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="/">Home</a></h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+            <div class="top-bar-section">
+              <ul class="right">
+                <li class="has-dropdown"><a href="assignments.html">Assignments</a>
+                  <ul class="dropdown">
+                    <li><a href="#">First link in dropdown</a></li>
+                  </ul>
+                </li>
+                <li><a href="news.html">News</a></li>
+                <li class="active"><a href="submit-tip.html">Submit Tip</a></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <div id="main" class="main">
+        <header>
+          <div class="row">
+            <div class="columns">
+              <h1>Submit Tip</h1>
+            </div>
+          </div>
+        </header>
+        <main class="page-main">
+          <div class="row">
+            <div class="columns medium-8">
+              <p>All posts on Yellr are anonymous.</p>
+              <div class="form-container">
+                <textarea name="media_text" rows="2" columns="10" placeholder="I said hey. What's going on?"></textarea>
+                <input type="submit" value="Submit" id="submit-tip" class="button">
+              </div>
+              
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer class="footer">
+        <div class="row">
+          <div class="columns">
+            <p><small>Yellr frontpage</small></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/jquery.form.min.js"></script>
+    <script src="js/vendor/fastclick.min.js"></script>
+    <script src="js/vendor/foundation.min.js"></script>
+    <script src="js/vendor/handlebars.js"></script>
+    <script src="js/frontpage.js"></script>
+  </body>
+</html>

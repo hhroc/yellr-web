@@ -22,7 +22,27 @@ html(lang="en").no-js
         main.page-main
           .row
             .columns.medium-8
-              div.forms-wrapper
+              p All posts on Yellr are anonymous.
+
+              .form-container
+                textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
+                input(type="submit", value="Submit")#submit-tip.button
+
+              //- form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+              //-   input(type="hidden", name="media_type", value="text")
+              //-   //- input(type="text", name="media_caption", placeholder="Title (optional)")
+              //-   textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
+              //-   input(type="submit", value="Submit").button
+
+
+              //- form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                input(type="hidden", name="media_type", value="text")
+                input(type="text", name="media_caption", placeholder="Title (optional)")
+                textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
+                input(type="submit", value="Submit").button
+
+
+              //- div.forms-wrapper
                 //- text
                 h2 Text
                 form#text-form.submit-form(method="post", accept-charset="utf-8", enctype="multipart/form-data")
@@ -55,7 +75,7 @@ html(lang="en").no-js
                   textarea(name="media_text", rows="2", columns="10", placeholder="What's going on?")
                   input(type="submit", value="Submit").button
 
-            .columns.medium-4
+            //- .columns.medium-4
               h2 Latest Assignments
               ul.latest-assignments-list
                 li
