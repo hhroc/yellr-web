@@ -2,21 +2,52 @@
 @import "elements";
 @import "typography";
 
-.main {
-    margin-top: $topbar-height;
+.homepage-header {
+    background-color: $yellow;
 }
 
-.homepage-header {
-    padding: 5rem 0;
-    background-color: $yellow;
+.hgroup {
     text-align: center;
-
+    padding: rem-calc(80) 0 rem-calc(50);
     h1 {
         margin-bottom: 2rem;
     }
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.homepage-header-report-form {
+    background-color: $grey;
+    background-color: rgba($grey, 0.125);
+    padding: $column-gutter 0;
+}
+
+.anon-disclaimer {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: rem-calc(12);
 }
 
 
+.title-1 {
+    text-transform: uppercase;
+    font-size: rem-calc(20);
+    // font-size: rem-calc(24);
+    font-weight: 500;
+    margin-bottom: rem-calc(32);
+}
+.story-title {
+    font-size: 3rem;
+}
+
+.main {
+    padding: (2*$column-gutter) 0;
+}
+.no-bullets {
+    list-style: none;
+}
 
 
 // ----------------------------------------

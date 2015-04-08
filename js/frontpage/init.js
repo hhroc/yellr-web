@@ -69,6 +69,7 @@
                             assignments: assignments
                         }
                     });
+                    $(document).foundation('reveal', 'reflow');
                 });
 
 
@@ -83,6 +84,7 @@
                             stories: stories
                         }
                     });
+                    $(document).foundation('reveal', 'reflow');
                 });
 
 
@@ -97,6 +99,7 @@
                             local_posts: local_posts
                         }
                     });
+                    $(document).foundation('reveal', 'reflow');
                 });
             }
 
