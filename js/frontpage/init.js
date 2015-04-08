@@ -77,18 +77,19 @@
                 });
 
 
-
-
-
-
-
-            $('#submit-tip').click(function () {
+            $('#report-form-1-submit').click(function () {
                 yellr.modules.submit.submit_tip();
             });
 
-            $('#textarea').keydown(function (event) {
-                $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
-            });
+
+
+
+
+
+
+            // $('#textarea').keydown(function (event) {
+            //     $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
+            // });
 
 
 

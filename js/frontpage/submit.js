@@ -106,51 +106,97 @@
 
         submit_tip: function(callback) {
 
-            console.log('get all the forms');
+            /**
+             * there will always be a text tip
+             *     - title
+             *     - optional description
+             *
+             *  there could also be extra media
+             */
 
-            var $forms = $('.form-container form');
+
+            var $text_title = $('#init-input').val();
+
+            if ($text_title === '') {
+                alert('Title is empty.');
+                return;
+            }
+            console.log($text_title);
+
+            var media_caption = $('#media_caption').val();
+            console.log(media_caption);
+
             var media_objects = [];
 
-
-            console.log($forms.length);
-
-            for (var i = 0; i < $forms.length; i++) {
-              var form = $forms[i];
-              console.log(i, form);
-
-              // make sure the form is not empty [returns true or false]
-              if (this.validate_form(form)) {
-
-                $(form).ajaxSubmit({
-                  url: yellr.URLS.upload,
-                  data: {
-                    client_id: yellr.UUID
-                  },
-                  success: function (response) {
+            $('#report-form-1').ajaxSubmit({
+                url: yellr.URLS.upload,
+                // data: {
+                //     media_type: 'text',
+                //     media_text: $text_title
+                // },
+                success: function (response) {
                     console.log(response);
                     if (response.success) {
-                      // add the media_id to our local array
-                      media_objects.push(response.media_id);
-                      if (media_objects.length === $forms.length) {
+                        media_objects.push(response.media_id);
                         yellr.modules.submit.publish_post(media_objects, function () {
                             console.log('lol things?S');
-                          // reset to text
-                          // yellr.utils.render_template({
-                          //   template: '#text-form-template',
-                          //   target: '.forms-wrapper'
-                          // });
                         });
-                      }
+
                     } else {
-                      console.log('Something went wrong with upload_media...');
-                      console.log(response);
+                        console.log('Something went wrong with upload_media...');
                     }
-                  },
-                  clearForm: true
-                });
-                // end ajaxSubmit
-              }
-            }
+                },
+                clearForm: true
+            });
+
+
+
+            // ----------------------------------------
+            // console.log('get all the forms');
+
+            // var $forms = $('.form-container form');
+            // var media_objects = [];
+
+
+            // console.log($forms.length);
+
+            // for (var i = 0; i < $forms.length; i++) {
+            //   var form = $forms[i];
+            //   console.log(i, form);
+
+            //   // make sure the form is not empty [returns true or false]
+            //   if (this.validate_form(form)) {
+
+            //     $(form).ajaxSubmit({
+            //       url: yellr.URLS.upload,
+            //       data: {
+            //         client_id: yellr.UUID
+            //       },
+            //       success: function (response) {
+            //         console.log(response);
+            //         if (response.success) {
+            //           // add the media_id to our local array
+            //           media_objects.push(response.media_id);
+            //           if (media_objects.length === $forms.length) {
+            //             yellr.modules.submit.publish_post(media_objects, function () {
+            //                 console.log('lol things?S');
+            //               // reset to text
+            //               // yellr.utils.render_template({
+            //               //   template: '#text-form-template',
+            //               //   target: '.forms-wrapper'
+            //               // });
+            //             });
+            //           }
+            //         } else {
+            //           console.log('Something went wrong with upload_media...');
+            //           console.log(response);
+            //         }
+            //       },
+            //       clearForm: true
+            //     });
+            //     // end ajaxSubmit
+            //   }
+            // }
         },
 
 
@@ -188,12 +234,7 @@
         publish_post: function(media_objects, callback) {
 
             $.post(yellr.URLS.post, {
-                title: 'Web Submission',
-                client_id: yellr.UUID,
                 assignment_id: null,
-                language_code: yellr.SETTINGS.language.code,
-                lat: yellr.SETTINGS.lat,
-                lng: yellr.SETTINGS.lng,
                 media_objects: JSON.stringify(media_objects)
             }, function(e) {
                 console.log('post published');

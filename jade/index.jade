@@ -32,20 +32,22 @@ html(lang="en").no-js
                   .columns.small-3
                     a#report-form-1-submit(href="#").button.prefix Submit
 
-              #report-form-1.homepage-intro-form
+              .homepage-intro-form
                 .row
                   .columns
                     span Submit Tip
                     .row.collapse
                       .columns.small-9
-                        input#init-input(type="text", name="media_text", placeholder="What's going on?")
+                        form#report-form-1
+                          input(type="hidden", name="media_type", value="text")
+                          input#init-input(type="text", name="media_text", placeholder="What's going on?")
                       .columns.small-3
                         a#report-form-1-submit(href="#").button.prefix Submit
 
               #form-extras.extras
                 .row
                   .columns
-                    textarea(name="media_caption", rows="3", columns="10", placeholder="Enter more details here (optional)")
+                    textarea#media_caption(name="media_caption", rows="3", columns="10", placeholder="Enter more details here (optional)")
                     .media-buttons
                       span.button.tiny
                         i.fa.fa-plus
