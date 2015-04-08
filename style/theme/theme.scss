@@ -23,12 +23,7 @@
     padding: $column-gutter 0;
 }
 
-.anon-disclaimer {
-    display: block;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: rem-calc(12);
-}
+
 
 
 .title-1 {
@@ -47,6 +42,51 @@
 }
 .no-bullets {
     list-style: none;
+    .js & {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+}
+
+.homepage-intro-form {
+    input,
+    .button {
+        margin-bottom: 0;
+    }
+}
+
+.extras {
+    transition: height 0.3s ease;
+    height: 0;
+    overflow: hidden;
+    textarea {
+        margin-bottom: 0;
+    }
+}
+
+.media-buttons {
+    .button {
+        margin-bottom: 0;
+        + .button {
+            border-left: 1px solid rgba($white, 0.4);
+        }
+    }
+    // modernizr class
+    .flexbox & {
+        display: flex;
+        .button {
+            flex: 1;
+        }
+    }
+}
+
+
+.anon-disclaimer {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: rem-calc(11);
+    padding-top: rem-calc(15);
 }
 
 

@@ -8,7 +8,7 @@
         modules: {},
 
         UUID: 0,
-        BASE_URL: 'http://yellr.net/',
+        BASE_URL: 'https://yellr.net/',
         URLS: {},
         SETTINGS: {
             lat: 47,
@@ -43,6 +43,45 @@
             this.URLS.get_local_posts = this.BASE_URL+'get_local_posts.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code
 
 
+
+            // this wholesection needs to be cleaned up
+            // ----------------------------------------
+            var form_is_active = false;
+            var $input = $('#init-input'),
+                $extras = $('#form-extras');
+
+                $input.on('focus', function () {
+                    $extras.css('height', $extras.children().height());
+                });
+
+                $input.on('blur', function () {
+                    $extras.css('height', 0);
+                });
+
+                $input.on('keydown', function () {
+                    if (form_is_active === false) {
+                        $input.off('blur');
+                        form_is_active = true;
+                    }
+                });
+
+                $input.on('change', function () {
+                    if ($input.val() === '') {
+                        $extras.css('height', 0);
+                        form_is_active = false;
+                        $input.on('blur', function () {
+                            $extras.css('height', 0);
+                        });
+                    }
+
+                });
+
+
+
+
+
+
+
             $('#submit-tip').click(function () {
                 yellr.modules.submit.submit_tip();
             });
@@ -69,6 +108,8 @@
                             assignments: assignments
                         }
                     });
+                    $('#latest-assignments').css('opacity', 1);
+                    $('#latest-assignments + i').css('display', 'none');
                     $(document).foundation('reveal', 'reflow');
                 });
 
@@ -84,6 +125,8 @@
                             stories: stories
                         }
                     });
+                    $('#latest-stories').css('opacity', 1);
+                    $('#latest-stories + i').css('display', 'none');
                     $(document).foundation('reveal', 'reflow');
                 });
 
@@ -99,6 +142,8 @@
                             local_posts: local_posts
                         }
                     });
+                    $('#latest-posts').css('opacity', 1);
+                    $('#latest-posts + i').css('display', 'none');
                     $(document).foundation('reveal', 'reflow');
                 });
             }

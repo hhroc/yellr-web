@@ -21,19 +21,52 @@ html(lang="en").no-js
         .homepage-header-report-form
           .row
             .columns.medium-centered.medium-5
-              .row
+              //- .row
                 .columns
                   span Submit Tip
-              form#report-form-1(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+              //- form#report-form-1(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
                 input(type="hidden", name="media_type", value="text")
                 .row.collapse
                   .columns.small-9
                     input(type="text", name="media_text", placeholder="What's going on?")
                   .columns.small-3
-                    a(href="#").button.prefix Submit
-                //- .row
+                    a#report-form-1-submit(href="#").button.prefix Submit
+
+              #report-form-1.homepage-intro-form
+                .row
                   .columns
-                    textarea(name="media_caption", rows="2", columns="10", placeholder="Enter more details here (optional)")
+                    span Submit Tip
+                    .row.collapse
+                      .columns.small-9
+                        input#init-input(type="text", name="media_text", placeholder="What's going on?")
+                      .columns.small-3
+                        a#report-form-1-submit(href="#").button.prefix Submit
+
+              #form-extras.extras
+                .row
+                  .columns
+                    textarea(name="media_caption", rows="3", columns="10", placeholder="Enter more details here (optional)")
+                    .media-buttons
+                      span.button.tiny
+                        i.fa.fa-plus
+                        | &nbsp;
+                        | Add Photo
+                      span.button.tiny
+                        i.fa.fa-plus
+                        | &nbsp;
+                        | Add Video
+                      span.button.tiny
+                        i.fa.fa-plus
+                        | &nbsp;
+                        | Add Audio
+
+
+
+              //- form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+                input(type="hidden", name="media_type", value="image")
+                input(type="file", name="media_file", multiple)
+                textarea(name="media_text", rows="2", columns="10", placeholder="Add description (optional)")
+
               span.anon-disclaimer All posts on Yellr are anonymous.
 
             //- .form-container
@@ -63,19 +96,6 @@ html(lang="en").no-js
                 input(type="file", name="media_file", multiple)
                 textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
 
-              .right
-                div.button
-                  i.fa.fa-plus
-                  | &nbsp;
-                  i.fa.fa-video-camera
-                div.button
-                  i.fa.fa-plus
-                  | &nbsp;
-                  i.fa.fa-camera
-                div.button
-                  i.fa.fa-plus
-                  | &nbsp;
-                  i.fa.fa-headphones
               input(type="submit", value="Submit")#submit-tip.button.right
 
 
@@ -84,7 +104,7 @@ html(lang="en").no-js
 
       main#main.main
         .row
-          .columns.medium-9
+          .columns.medium-8
             header
               h1.title-1 Latest Stories
 
@@ -104,6 +124,7 @@ html(lang="en").no-js
                 p assignment_id: 1
             //- "contents_rendered": "... the <b>story</b>!"
             ul#latest-stories.latest-stories-list.no-bullets
+            <i class="fa fa-spinner fa-pulse"></i>
             script#stories-li-template(type="text/x-handlebars-template").
               {{#each stories}}
                 <li>
@@ -142,7 +163,7 @@ html(lang="en").no-js
                 </li>
               {{/each}}
 
-          .columns.medium-3
+          .columns.medium-4
             header
               h1.title-1 Assignments
             //- ul.latest-assignments-list.no-bullets
@@ -161,6 +182,7 @@ html(lang="en").no-js
                 p assignment_id: 1
 
             ul#latest-assignments.latest-assignments-list.no-bullets
+            <i class="fa fa-spinner fa-pulse"></i>
             script#assignment-li-template(type="text/x-handlebars-template").
               {{#each assignments}}
                 <li>
@@ -174,38 +196,40 @@ html(lang="en").no-js
         .row
           .columns
             h2.title-1 Latest Posts
-        ul#latest-posts.latest-posts-list.no-bullets
-        //- {
-        //-     "last_name": null,
-        //-     "language_code": "en",
-        //-     "post_id": 5,
-        //-     "verified_user": false,
-        //-     "post_datetime": "2015-03-27 15:58:23.122724",
-        //-     "media_objects": [
-        //-         {
-        //-             "media_id": "9b6b9682-1bad-479f-8d1c-440a8f2bb1d3",
-        //-             "preview_file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112p.jpg",
-        //-             "file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112.jpg",
-        //-             "media_text": "",
-        //-             "caption": "I like our little city :).",
-        //-             "media_type_description": "An Image.",
-        //-             "media_type_name": "image"
-        //-         }
-        //-     ],
-        //-     "first_name": null,
-        //-     "question_text": "How will you be spending New Years Eve?",
-        //-     "is_up_vote": 0,
-        //-     "down_vote_count": 0,
-        //-     "has_voted": 0,
-        //-     "language_name": "English",
-        //-     "up_vote_count": 1
-        //- }
-        script#latest-posts-li-template(type="text/x-handlebars-template").
-          {{#each latest_posts}}
-            <li>
-              <p>response to {{question_text}}</p>
-            </li>
-          {{/each}}
+        .columns
+          ul#latest-posts.latest-posts-list.no-bullets
+          //- <i class="fa fa-spinner fa-pulse"></i>
+          //- {
+          //-     "last_name": null,
+          //-     "language_code": "en",
+          //-     "post_id": 5,
+          //-     "verified_user": false,
+          //-     "post_datetime": "2015-03-27 15:58:23.122724",
+          //-     "media_objects": [
+          //-         {
+          //-             "media_id": "9b6b9682-1bad-479f-8d1c-440a8f2bb1d3",
+          //-             "preview_file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112p.jpg",
+          //-             "file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112.jpg",
+          //-             "media_text": "",
+          //-             "caption": "I like our little city :).",
+          //-             "media_type_description": "An Image.",
+          //-             "media_type_name": "image"
+          //-         }
+          //-     ],
+          //-     "first_name": null,
+          //-     "question_text": "How will you be spending New Years Eve?",
+          //-     "is_up_vote": 0,
+          //-     "down_vote_count": 0,
+          //-     "has_voted": 0,
+          //-     "language_name": "English",
+          //-     "up_vote_count": 1
+          //- }
+          script#latest-posts-li-template(type="text/x-handlebars-template").
+            {{#each local_posts}}
+              <li>
+                <p>response to {{question_text}}</p>
+              </li>
+            {{/each}}
 
 
 
