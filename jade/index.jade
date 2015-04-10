@@ -11,6 +11,7 @@ html(lang="en").no-js
     a(href="#main").visuallyhidden Skip to main content
     .container
       header.homepage-header
+
         .hgroup
           .row
             .columns
@@ -18,90 +19,8 @@ html(lang="en").no-js
               p Rochester, New York
                 br
                 small B E T A
-        .homepage-header-report-form
-          .row
-            .columns.medium-centered.medium-5
-              //- .row
-                .columns
-                  span Submit Tip
-              //- form#report-form-1(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                input(type="hidden", name="media_type", value="text")
-                .row.collapse
-                  .columns.small-9
-                    input(type="text", name="media_text", placeholder="What's going on?")
-                  .columns.small-3
-                    a#report-form-1-submit(href="#").button.prefix Submit
 
-              .homepage-intro-form
-                .row
-                  .columns
-                    span Submit Tip
-                    .row.collapse
-                      .columns.small-9
-                        form#report-form-1
-                          input(type="hidden", name="media_type", value="text")
-                          input#init-input(type="text", name="media_text", placeholder="What's going on?")
-                      .columns.small-3
-                        a#report-form-1-submit(href="#").button.prefix Submit
-
-              #form-extras.extras
-                .row
-                  .columns
-                    textarea#media_caption(name="media_caption", rows="3", columns="10", placeholder="Enter more details here (optional)")
-                    .media-buttons
-                      span.button.tiny
-                        i.fa.fa-plus
-                        | &nbsp;
-                        | Add Photo
-                      span.button.tiny
-                        i.fa.fa-plus
-                        | &nbsp;
-                        | Add Video
-                      span.button.tiny
-                        i.fa.fa-plus
-                        | &nbsp;
-                        | Add Audio
-
-
-
-              //- form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                input(type="hidden", name="media_type", value="image")
-                input(type="file", name="media_file", multiple)
-                textarea(name="media_text", rows="2", columns="10", placeholder="Add description (optional)")
-
-              span.anon-disclaimer All posts on Yellr are anonymous.
-
-            //- .form-container
-              //- default to text form
-              //- text
-              form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                input(type="hidden", name="media_type", value="text")
-                input(type="text", name="media_caption", placeholder="Title (optional)")
-                textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
-
-              //- images
-              //- form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                input(type="hidden", name="media_type", value="image")
-                input(type="file", name="media_file", multiple)
-                textarea(name="media_text", rows="2", columns="10", placeholder="Add description (optional)")
-
-              //- video
-              //- form(data-media-type="video", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                input(type="hidden", name="media_type", value="video")
-                textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
-                input(type="file", name="media_file", multiple)
-
-
-              //- audio
-              //- form(data-media-type="audio", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                input(type="hidden", name="media_type", value="audio")
-                input(type="file", name="media_file", multiple)
-                textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
-
-              input(type="submit", value="Submit")#submit-tip.button.right
-
-
-
+        include forms/form-1.jade
 
 
       main#main.main
@@ -240,3 +159,4 @@ html(lang="en").no-js
       include _footer.jade
 
     include _scripts.jade
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>

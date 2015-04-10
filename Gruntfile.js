@@ -13,8 +13,9 @@ module.exports = function(grunt) {
         js_libs_dir: 'js/vendor/',
         js_files: [
             'js/frontpage/init.js',
-            'js/frontpage/submit.js',
-            'js/frontpage/yellr-server.js',
+            'js/frontpage/user.js',
+            'js/frontpage/server.js',
+            'js/frontpage/forms/form-1.js',
         ],
         output: {
             folder:                 './build/',
