@@ -10,129 +10,160 @@
     <link rel="stylesheet" href="style/frontpage.css">
     <script src="js/vendor/modernizr.min.js"></script>
   </head>
-  <body id="index">
-    <h1 class="visuallyhidden">Yellr Frontpage</h1><a href="#main" class="visuallyhidden">Skip to main content</a>
+  <body id="index"><a href="#main" class="visuallyhidden">Skip to main content</a>
     <div class="container">
-      <div class="fixed">
-        <header class="header">
-          <nav data-topbar role="navigation" class="top-bar">
-            <ul class="title-area">
-              <li class="name">
-                <h1><a href="/">Home</a></h1>
-              </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-            </ul>
-            <div class="top-bar-section">
-              <ul class="right">
-                <li class="has-dropdown"><a href="assignments.html">Assignments</a>
-                  <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a></li>
-                  </ul>
-                </li>
-                <li><a href="news.html">News</a></li>
-                <li class="active"><a href="submit-tip.html">Submit Tip</a></li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-      </div>
-      <div id="main" class="main">
-        <header class="homepage-header">
+      <header class="homepage-header">
+        <div class="hgroup">
           <div class="row">
             <div class="columns">
               <h1>Yellr</h1>
-              <p>Rochester, New York <br/><small>B E T A</small></p>
+              <p>Rochester, New York<br><small>B E T A</small></p>
             </div>
           </div>
-        </header>
-        <main class="page-main">
+        </div>
+        <div class="homepage-header-report-form">
           <div class="row">
-            <div class="columns medium-8">
-              <div class="row">
-                <div class="columns medium-7">
-                  <h2>Assignments</h2>
-                  <ul id="latest-assignments" class="latest-assignments-list"></ul>
-                  <script id="assignment-li-template" type="text/x-handlebars-template">
-                    {{#each assignments}}
-                      <li>
-                        <h3><a href="#">{{question_text}}</a></h3>
-                        <p>{{description}}</p>
-                      </li>
-                    {{/each}}
-                    
-                    
-                    
-                    
-                  </script>
+            <div class="columns medium-centered medium-5">
+              <form id="homepage-intro-form" data-media-type="text" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="homepage-intro-form">
+                <input type="hidden" name="media_type" value="text">
+                <div class="row">
+                  <div class="columns"><span>Submit Tip</span>
+                    <div class="row collapse">
+                      <div class="columns small-9">
+                        <input id="init-input" type="text" name="media_text" placeholder="What's going on?">
+                      </div>
+                      <div class="columns small-3"><a id="report-form-1-submit" href="#" class="button prefix">Submit</a></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="columns medium-5">
-                  <h2>Latest Stories</h2>
-                  <ul id="latest-stories" class="latest-stories-list"></ul>
-                  <script id="stories-li-template" type="text/x-handlebars-template">
-                    {{#each stories}}
-                      <li>
-                        <h3><a href="#">{{title}}</a></h3>
-                        <p>{{description}}</p>
-                        <p>{{top_text}}</p>
-                        <p>{{author_first_name}} {{author_last_name}}</p>
-                        <p>{{author_email}}</p>
-                        <p>{{author_organization}}</p>
-                        <p>{{banner_media_file_name}}</p>
-                        <p>{{story_unique_id}}</p>
-                        <p>{{tags}}</p>
-                        <p>{{banner_media_id}}</p>
-                        <p>{{edited_datetime}}</p>
-                        <p>{{publish_datetime}}</p>
-                        <div>{{{contents_rendered}}}</div>
-                      </li>
-                    {{/each}}
-                    
-                    
-                  </script>
+              </form>
+              <div id="form-extras" class="extras">
+                <div class="row">
+                  <div class="columns">
+                    <textarea id="media_caption" name="media_caption" rows="3" columns="10" placeholder="Enter more details here (optional)"></textarea>
+                    <div class="media-buttons"><span id="add-photo-btn" class="button tiny"><i class="fa fa-plus"></i>&nbsp;
+                        Add Photo</span><span id="add-video-btn" class="button tiny"><i class="fa fa-plus"></i>&nbsp;
+                        Add Video</span><span id="add-audio-btn" class="button tiny"><i class="fa fa-plus"></i>&nbsp;
+                        Add Audio</span></div>
+                    <div id="form-container" class="form-container"></div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="columns medium-4">
-              <div>
-                <p><strong>Submit tip</strong></p>
-                <p><em>All posts on Yellr are anonymous.</em></p>
-                <p>Curious about how we protect your identity? <a href="#">Click here to learn more.</a></p>
-                <div class="form-container">
+              </div><span class="anon-disclaimer">All posts on Yellr are anonymous.</span>
+              <div class="form-templates visuallyhidden">
+                <script id="text-form-template" type="text/x-handlebars-template">
                   <form data-media-type="text" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                     <input type="hidden" name="media_type" value="text">
                     <input type="text" name="media_caption" placeholder="Title (optional)">
                     <textarea name="media_text" rows="2" columns="10" placeholder="I said hey. What's going on?"></textarea>
                   </form>
-                  <div class="right">
-                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-video-camera"></i></div>
-                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-camera"></i></div>
-                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-headphones"></i></div>
-                  </div>
-                  <input type="submit" value="Submit" id="submit-tip" class="button right">
-                </div>
+                </script>
+                <script id="media-form-template" type="text/x-handlebars-template">
+                  <form id="{{id_string}}" data-media-type="{{media_type}}" class="media-form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <input type="hidden" name="media_type" value="{{media_type}}">
+                    <div class="row">
+                      <div class="columns small-5">
+                        <input type="file" name="media_file" multiple>
+                        <span id="{{id_string}}-cancel" data-cancel data-form="{{id_string}}">Cancel</span>
+                      </div>
+                      <div class="columns small-7">
+                        <textarea name="media_text" rows="2" columns="10" placeholder="Add {{media_type}} description (Optional)"></textarea>
+                      </div>
+                    </div>
+                  </form>
+                  
+                  
+                </script>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="columns">
-              <h2>Latest Posts</h2>
-              <ul id="latest-posts" class="latest-posts-list"></ul>
-              <script id="latest-posts-li-template" type="text/x-handlebars-template">
-                {{#each latest_posts}}
-                  <li>
-                    <p>response to {{question_text}}</p>
-                  </li>
-                {{/each}}
-                
-                
-                
-                
-                
-              </script>
-            </div>
+        </div>
+      </header>
+      <main id="main" class="main">
+        <div class="row">
+          <div class="columns medium-8">
+            <header>
+              <h1 class="title-1">Latest Stories</h1>
+            </header>
+            <ul id="latest-stories" class="latest-stories-list no-bullets"></ul><i class="fa fa-spinner fa-pulse"></i>
+            <script id="stories-li-template" type="text/x-handlebars-template">
+              {{#each stories}}
+                <li>
+                  <div class="row">
+                    {{#if banner_media_file_name}}
+                    <div class="columns medium-8">
+                    {{else}}
+                    <div class="columns medium-12">
+                    {{/if}}
+                      <h2 class="story-title">
+                        <a href="#" data-reveal-id="_{{story_unique_id}}">{{title}}</a>
+                      </h2>
+                      <ul class="inline-list">
+                        <li>Posted: {{publish_datetime}}</li>
+                        <li>Edited: {{edited_datetime}}</li>
+                      </ul>
+                      <p>{{description}}</p>
+                      <p>{{top_text}}</p>
+                      <ul class="inline-list">
+                        <li>{{author_first_name}} {{author_last_name}}</li>
+                        <li>{{author_email}}</li>
+                        <li>{{author_organization}}</li>
+                      </ul>
+                      <p>{{tags}}</p>
+                    </div>
+                    {{#if banner_media_file_name}}
+                    <div class="columns medium-4">
+                      <img src="http://yellr.net/media/{{banner_media_file_name}}">
+                    </div>
+                    {{/if}}
+                  </div>
+                  <div id="_{{story_unique_id}}" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+                    <div>{{{contents_rendered}}}</div>
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                  </div>
+                </li>
+              {{/each}}
+              
+            </script>
           </div>
-        </main>
-      </div>
+          <div class="columns medium-4">
+            <header>
+              <h1 class="title-1">Assignments</h1>
+            </header>
+            <ul id="latest-assignments" class="latest-assignments-list no-bullets"></ul><i class="fa fa-spinner fa-pulse"></i>
+            <script id="assignment-li-template" type="text/x-handlebars-template">
+              {{#each assignments}}
+                <li>
+                  <h3><a href="#">{{question_text}}</a></h3>
+                  <p>{{description}}</p>
+                </li>
+              {{/each}}
+              
+              
+              
+            </script>
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns">
+            <h2 class="title-1">Latest Posts</h2>
+          </div>
+        </div>
+        <div class="columns">
+          <ul id="latest-posts" class="latest-posts-list no-bullets"></ul>
+          <script id="latest-posts-li-template" type="text/x-handlebars-template">
+            {{#each local_posts}}
+              <li>
+                <p>response to {{question_text}}</p>
+              </li>
+            {{/each}}
+            
+            
+            
+            
+            
+          </script>
+        </div>
+      </main>
       <footer class="footer">
         <div class="row">
           <div class="columns">
@@ -146,6 +177,6 @@
     <script src="js/vendor/fastclick.min.js"></script>
     <script src="js/vendor/foundation.min.js"></script>
     <script src="js/vendor/handlebars.js"></script>
-    <script src="js/frontpage.js"></script>
+    <script src="js/frontpage.js"></script><script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
   </body>
 </html>
