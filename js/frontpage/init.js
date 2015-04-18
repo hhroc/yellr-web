@@ -51,7 +51,8 @@
                 $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
             });
 
-
+            this.pages.init();
+            this.pages.showPage('local');
 
             // get latest assignments for homepage
             if ($('#index').length) {
@@ -103,8 +104,40 @@
         },
         // ----------------------------------------
 
+        pages: {
+            _pages: [
+                'local',
+                'assignments',
+                'stories',
+                'post',
+                'about',
+            ],
+            init: function() {
+                for(var i=0; i<this._pages.length; i++) {
+                    $('#nav-page-' + window.yellr.pages._pages[i]).on('click', function() {
+                        var pageName = $(this).attr('id').split('-')[2];
+                        console.log('onClick(): ' + pageName);
+                        window.yellr.pages.showPage(pageName);
+                    });
+                }
+            },
+            showPage: function(pageName) {
+                console.log('showPage(): ' + pageName);
+                if ( window.yellr.pages._pages.indexOf(pageName) > -1 ) {
+                    console.log('showPage() - inside.');
+                    $('.page').hide();
+                    $('#page-' + pageName).show();
+                    for(var i=0; i<this._pages.length; i++) {
+                        $('#nav-page-' + this._pages[i]).addClass('page-button-deselected');
+                    }
+                    $('#nav-page-' + pageName).removeClass('page-button-deselected');
+                    $('#nav-page-' + pageName).addClass('page-button-selected');
+                }
+            }
+        },
 
 
+        // ----------------------------------------
         utils: {
 
             guid: function (len, radix) {

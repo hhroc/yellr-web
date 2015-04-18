@@ -7,17 +7,69 @@
 }
 
 .homepage-header {
-    padding: 5rem 0;
+    padding: 1rem 0;
     background-color: $yellow;
     text-align: center;
 
     h1 {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        font-size: 400%;
     }
 }
 
+ul {
+    list-style-type: none;
+}
 
+.assignment-box {
+    padding: 15px;
+    border: 1px solid $yellow; 
+}
 
+.page {
+    display: none;
+}
+
+.page-selection {
+    //display: inline;
+    //background: none repeat scroll 0% 0% #2F2F2F;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #2F2F2F;
+}
+
+.page-selection li {
+    display: inline;
+}
+
+.page-button-selected {
+    background-color: #008CBA;
+    padding: 8px;
+    margin: 4px;
+    margin-bottom: 10px;
+    color: #ebebeb;
+}
+
+.page-button-selected:hover {
+    color: #ebebeb;
+}
+
+.page-button-deselected {
+    padding: 8px;
+    margin: 4px;
+    background-color: white !important;
+    color: #008CBA !important;
+    border: 1px solid #007095;
+    transition: background-color 300ms ease-out 0s;
+}
+
+.page-button-deselected:hover, .page-button-deselected:focus {
+    background-color: #007095 !important; 
+}
+
+.page-button-deselected:hover, .page-button-deselected:focus,{
+    color: #ebebeb !important; 
+}
 
 // ----------------------------------------
 // ----------------------------------------
