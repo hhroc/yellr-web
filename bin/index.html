@@ -20,22 +20,49 @@
               <li class="name">
                 <h1><a href="/">Home</a></h1>
               </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
             </ul>
-            <div class="top-bar-section">
-              <ul class="right">
-                <li class="has-dropdown"><a href="assignments.html">Assignments</a>
-                  <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a></li>
-                  </ul>
-                </li>
-                <li><a href="news.html">News</a></li>
-                <li class="active"><a href="submit-tip.html">Submit Tip</a></li>
-              </ul>
-            </div>
+            <ul class="left">
+              <li class="name">
+                <h1><a href="/about.html">About</a></h1>
+              </li>
+            </ul>
           </nav>
         </header>
       </div>
+      <!--        li-->
+      <!--          h1-->
+      <!--            a(href="/") About-->
+      <!--        li-->
+      <!--          h1-->
+      <!--            a(href="/") Contact-->
+      <!--        li.toggle-topbar.menu-icon-->
+      <!--          a(href="#")-->
+      <!--            span Menu-->
+      <!--      section.top-bar-section-->
+      <!--        ul.right-->
+      <!--          li.has-dropdown-->
+      <!--            a(href="#") Menu-->
+      <!--            ul.dropdown-->
+      <!--              li-->
+      <!--                a(href="localposts.html") Local Posts-->
+      <!--              li-->
+      <!--                a(href="assignments.html") Assignments-->
+      <!--              li-->
+      <!--                a(href="stories.html") Stories-->
+      <!--              li-->
+      <!--                a(href="contribute.html") Contribute -->
+      <!--              li-->
+      <!--                a(href="about.html") About-->
+      <!--              li-->
+      <!--                a(href="contact.html") Contact-->
+      <!---->
+      <!--          li-->
+      <!--            a(href="news.html") News-->
+      <!--          li.active-->
+      <!--            a(href="submit-tip.html") Submit Tip-->
+      <!--        //- ul.left-->
+      <!--          li.active-->
+      <!--            a(href="#") Submit tip-->
       <div id="main" class="main">
         <header class="homepage-header">
           <div class="row">
@@ -46,91 +73,142 @@
           </div>
         </header>
         <main class="page-main">
-          <div class="row">
-            <div class="columns medium-8">
-              <div class="row">
-                <div class="columns medium-7">
-                  <h2>Assignments</h2>
-                  <ul id="latest-assignments" class="latest-assignments-list"></ul>
-                  <script id="assignment-li-template" type="text/x-handlebars-template">
-                    {{#each assignments}}
-                      <li>
-                        <h3><a href="#">{{question_text}}</a></h3>
-                        <p>{{description}}</p>
-                      </li>
-                    {{/each}}
-                    
-                    
-                    
-                    
-                  </script>
-                </div>
-                <div class="columns medium-5">
-                  <h2>Latest Stories</h2>
-                  <ul id="latest-stories" class="latest-stories-list"></ul>
-                  <script id="stories-li-template" type="text/x-handlebars-template">
-                    {{#each stories}}
-                      <li>
-                        <h3><a href="#">{{title}}</a></h3>
-                        <p>{{description}}</p>
-                        <p>{{top_text}}</p>
-                        <p>{{author_first_name}} {{author_last_name}}</p>
-                        <p>{{author_email}}</p>
-                        <p>{{author_organization}}</p>
-                        <p>{{banner_media_file_name}}</p>
-                        <p>{{story_unique_id}}</p>
-                        <p>{{tags}}</p>
-                        <p>{{banner_media_id}}</p>
-                        <p>{{edited_datetime}}</p>
-                        <p>{{publish_datetime}}</p>
-                        <div>{{{contents_rendered}}}</div>
-                      </li>
-                    {{/each}}
-                    
-                    
-                  </script>
-                </div>
+          <div class="row page-selection">
+            <div class="columns medium-12">
+              <ul>
+                <li><a id="nav-page-local" class="small page-button-deselected">Local</a></li>
+                <li><a id="nav-page-assignments" class="small page-button-deselected">Assignments</a></li>
+                <li><a id="nav-page-stories" class="small page-button-deselected">Stories</a></li>
+                <li><a id="nav-page-post" class="small page-button-deselected">Post</a></li>
+                <!--li-->
+                <!--  a#nav-page-about.small.page-button-deselected About-->
+              </ul>
+            </div>
+          </div>
+          <div id="page-local" class="page">
+            <div class="row">
+              <div class="columns"></div>
+              <h2>Posts in Your Area</h2>
+              <!--ul#latest-posts.latest-posts-list-->
+            </div>
+          </div>
+          <div id="page-assignments" class="page">
+            <div class="row">
+              <div class="columns medium-12">
+                <h2>Assignments</h2>
+                <ul id="latest-assignments" class="latest-assignments-list"></ul>
+                <script id="assignment-li-template" type="text/x-handlebars-template">
+                  {{#each assignments}}
+                    <li class="assignment-box">
+                      <h3><a href="#">{{question_text}}</a></h3>
+                      <p>{{description}}</p>
+                    </li>
+                  {{/each}}
+                  
+                </script>
               </div>
             </div>
-            <div class="columns medium-4">
-              <div>
-                <p><strong>Submit tip</strong></p>
-                <p><em>All posts on Yellr are anonymous.</em></p>
-                <p>Curious about how we protect your identity? <a href="#">Click here to learn more.</a></p>
-                <div class="form-container">
-                  <form data-media-type="text" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                    <input type="hidden" name="media_type" value="text">
-                    <input type="text" name="media_caption" placeholder="Title (optional)">
-                    <textarea name="media_text" rows="2" columns="10" placeholder="I said hey. What's going on?"></textarea>
-                  </form>
-                  <div class="right">
-                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-video-camera"></i></div>
-                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-camera"></i></div>
-                    <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-headphones"></i></div>
+          </div>
+          <div id="page-stories" class="page">
+            <div class="row">
+              <div class="columns medium-12">
+                <h2>Community Stories</h2>
+                <ul id="latest-stories" class="latest-stories-list"></ul>
+                <script id="stories-li-template" type="text/x-handlebars-template">
+                  {{#each stories}}
+                    <li>
+                      <h3><a href="#">{{title}}</a></h3>
+                      <p>{{description}}</p>
+                      <p>{{top_text}}</p>
+                      <p>{{author_first_name}} {{author_last_name}}</p>
+                      <p>{{author_email}}</p>
+                      <p>{{author_organization}}</p>
+                      <p>{{banner_media_file_name}}</p>
+                      <p>{{story_unique_id}}</p>
+                      <p>{{tags}}</p>
+                      <p>{{banner_media_id}}</p>
+                      <p>{{edited_datetime}}</p>
+                      <p>{{publish_datetime}}</p>
+                      <div>{{{contents_rendered}}}</div>
+                    </li>
+                  {{/each}}
+                  
+                </script>
+              </div>
+            </div>
+          </div>
+          <div id="page-post" class="page">
+            <div class="row">
+              <div class="columns medium-12">
+                <h2>Post to Yellr</h2>
+                <div>
+                  <!--p-->
+                  <!--  strong Submit tip-->
+                  <!--pem All posts on Yellr are anonymous.
+                  -->
+                  <p>Curious about how we protect your identity? <a href="#">Click here to learn more.</a></p>
+                  <div class="form-container">
+                    <form data-media-type="text" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                      <input type="hidden" name="media_type" value="text">
+                      <!--input(type="text", name="media_caption", placeholder="Title (optional)")-->
+                      <textarea name="media_text" rows="2" columns="10" placeholder="I said hey. What's going on?"></textarea>
+                    </form>
+                    <div class="right">
+                      <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-video-camera"></i></div>
+                      <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-camera"></i></div>
+                      <div class="button"><i class="fa fa-plus"></i>&nbsp;<i class="fa fa-headphones"></i></div>
+                    </div><br>
+                    <input type="submit" value="Submit" id="submit-tip" class="button right">
                   </div>
-                  <input type="submit" value="Submit" id="submit-tip" class="button right">
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="columns">
-              <h2>Latest Posts</h2>
-              <ul id="latest-posts" class="latest-posts-list"></ul>
-              <script id="latest-posts-li-template" type="text/x-handlebars-template">
-                {{#each latest_posts}}
-                  <li>
-                    <p>response to {{question_text}}</p>
-                  </li>
-                {{/each}}
-                
-                
-                
-                
-                
-              </script>
+          <div id="page-about" class="page">
+            <div class="row">
+              <div class="columns medium-12">
+                <h2>About Yellr</h2>
+              </div>
             </div>
           </div>
+          <!--.row
+          //.columns
+            //h2 Latest Posts
+            //ul#latest-posts.latest-posts-list
+            //- {
+            //-     "last_name": null,
+            //-     "language_code": "en",
+            //-     "post_id": 5,
+            //-     "verified_user": false,
+            //-     "post_datetime": "2015-03-27 15:58:23.122724",
+            //-     "media_objects": [
+            //-         {
+            //-             "media_id": "9b6b9682-1bad-479f-8d1c-440a8f2bb1d3",
+            //-             "preview_file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112p.jpg",
+            //-             "file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112.jpg",
+            //-             "media_text": "",
+            //-             "caption": "I like our little city :).",
+            //-             "media_type_description": "An Image.",
+            //-             "media_type_name": "image"
+            //-         }
+            //-     ],
+            //-     "first_name": null,
+            //-     "question_text": "How will you be spending New Years Eve?",
+            //-     "is_up_vote": 0,
+            //-     "down_vote_count": 0,
+            //-     "has_voted": 0,
+            //-     "language_name": "English",
+            //-     "up_vote_count": 1
+            //- }
+            //script#latest-posts-li-template(type="text/x-handlebars-template").
+            //  {{#each latest_posts}}
+            //    <li>
+            //      <p>response to {{question_text}}</p>
+            //    </li>
+            //  {{/each}}
+          
+          
+          -->
         </main>
       </div>
       <footer class="footer">
