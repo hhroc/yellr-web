@@ -1,0 +1,89 @@
+.homepage-header-report-form
+  .row
+    .columns.medium-centered.medium-5
+      form#homepage-intro-form.homepage-intro-form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+        input(type="hidden", name="media_type", value="text")
+        .row
+          .columns
+            span Submit Tip
+            .row.collapse
+              .columns.small-9
+                input#init-input(type="text", name="media_text", placeholder="What's going on?")
+              .columns.small-3
+                a#report-form-1-submit(href="#").button.prefix Submit
+
+      #form-extras.extras
+        .row
+          .columns
+            textarea#media_caption(name="media_caption", rows="3", columns="10", placeholder="Enter more details here (optional)")
+            .media-buttons
+              span#add-photo-btn.button.tiny
+                i.fa.fa-plus
+                | &nbsp;
+                | Add Photo
+              span#add-video-btn.button.tiny
+                i.fa.fa-plus
+                | &nbsp;
+                | Add Video
+              span#add-audio-btn.button.tiny
+                i.fa.fa-plus
+                | &nbsp;
+                | Add Audio
+            #form-container.form-container
+
+      span.anon-disclaimer All posts on Yellr are anonymous.
+
+      .form-templates.visuallyhidden
+        script#text-form-template(type="text/x-handlebars-template").
+          <form data-media-type="text" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <input type="hidden" name="media_type" value="text">
+            <input type="text" name="media_caption" placeholder="Title (optional)">
+            <textarea name="media_text" rows="2" columns="10" placeholder="I said hey. What's going on?"></textarea>
+          </form>
+        script#media-form-template(type="text/x-handlebars-template").
+          <form id="{{id_string}}" data-media-type="{{media_type}}" class="media-form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <input type="hidden" name="media_type" value="{{media_type}}">
+            <div class="row">
+              <div class="columns small-5">
+                <input type="file" name="media_file" multiple>
+                <span id="{{id_string}}-cancel" data-cancel data-form="{{id_string}}">Cancel</span>
+              </div>
+              <div class="columns small-7">
+                <textarea name="media_text" rows="2" columns="10" placeholder="Add {{media_type}} description (Optional)"></textarea>
+              </div>
+            </div>
+          </form>
+
+
+      //- .form-container
+        //- default to text form
+        //- text
+        form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+          p text
+          input(type="hidden", name="media_type", value="text")
+          input(type="text", name="media_caption", placeholder="Title (optional)")
+          textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
+
+        //- images
+        form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+          p images
+          input(type="hidden", name="media_type", value="image")
+          input(type="file", name="media_file", multiple)
+          textarea(name="media_text", rows="2", columns="10", placeholder="Add description (optional)")
+
+        //- video
+        form(data-media-type="video", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+          p video
+          input(type="hidden", name="media_type", value="video")
+          textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
+          input(type="file", name="media_file", multiple)
+
+
+        //- audio
+        form(data-media-type="audio", method="post", accept-charset="utf-8", enctype="multipart/form-data")
+          p audio
+          input(type="hidden", name="media_type", value="audio")
+          input(type="file", name="media_file", multiple)
+          textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
+
+

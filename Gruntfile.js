@@ -5,19 +5,20 @@ module.exports = function(grunt) {
 
     // project directory layout
     var project = {
-        images_dir: 'images',
+        images_dir: 'images/',
         jade_dir: 'jade/',
         sass_dir: 'style/',
         sass_filename: 'style.scss',
-        sass_assets: 'style/assets',
-        js_libs_dir: 'js/vendor',
+        sass_assets_dir: 'style/assets/',
+        js_libs_dir: 'js/vendor/',
         js_files: [
             'js/frontpage/init.js',
-            'js/frontpage/submit.js',
-            'js/frontpage/yellr-server.js',
+            'js/frontpage/user.js',
+            'js/frontpage/server.js',
+            'js/frontpage/forms/form-1.js',
         ],
         output: {
-            folder:                 './bin/',
+            folder:                 './build/',
             css_folder:                 'style/',
             css_filename:                   'frontpage.css',
             css_filename_minified:          'frontpage.min.css',
@@ -112,7 +113,7 @@ module.exports = function(grunt) {
         // 3. comb
         csscomb: {
             options: {
-                config: 'style/.csscomb.json'
+                config: '<%= project.sass_dir %>.csscomb.json'
             },
             build: {
                 src: ['<%= project.output.folder %><%= project.output.css_folder %><%= project.output.css_filename %>'],
@@ -124,7 +125,7 @@ module.exports = function(grunt) {
         // 4. lint
         csslint: {
             options: {
-                csslintrc: 'style/.csslintrc'
+                csslintrc: '<%= project.sass_dir %>.csslintrc'
             },
             build: ['<%= project.output.folder %><%= project.output.css_folder %><%= project.output.css_filename %>']
         },
@@ -173,6 +174,31 @@ module.exports = function(grunt) {
 
         // Utils
         // ----------------------------------------
+        // copy files
+        copy: {
+            style_assets: {
+                files: [{
+                    expand: true,
+                    src:['<%= project.sass_assets_dir %>**'],
+                    dest: '<%= project.output.folder %>'
+                }]
+            },
+            images: {
+                files : [{
+                    expand: true,
+                    src: ['<%= project.images_dir %>**'],
+                    dest: '<%= project.output.folder %>'
+                }]
+            },
+            js_libs: {
+                files : [{
+                    expand: true,
+                    src: ['<%= project.js_libs_dir %>**'],
+                    dest: '<%= project.output.folder %>'
+                }]
+            }
+        },
+
         // banners
         usebanner: {
             options: {
@@ -192,8 +218,12 @@ module.exports = function(grunt) {
         // watch file changes
         watch: {
             sass: {
-                files: ['style/*.scss','style/**/*.scss'],
+                files: ['<%= project.sass_dir %>*.scss','<%= project.sass_dir %>**/*.scss'],
                 tasks: ['sass:build', 'autoprefixer:build']
+            },
+            images: {
+                files: ['<%= project.images_dir %>*.*', '<%= project.images_dir %>**/*.*'],
+                tasks: ['copy:images']
             },
             jade: {
                 files: [ '<%= project.jade_dir %>*.jade'],
@@ -202,6 +232,10 @@ module.exports = function(grunt) {
             js: {
                 files: '<%= concat.build.src %>',
                 tasks: ['concat:build']
+            },
+            style_assets: {
+                files: ['<%= project.sass_assets_dir %>*.*', '<%= project.sass_assets_dir %>**/*.*'],
+                tasks: ['copy:style_assets']
             }
         }
 
@@ -226,6 +260,9 @@ module.exports = function(grunt) {
             'autoprefixer',
             'concat',     // build js
             'jade',       // build html
+            'copy:images',      // copy images
+            'copy:js_libs',     // copy js/ibs
+            'copy:style_assets',// copy fonts/pngs
         ]);
     });
 

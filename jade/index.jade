@@ -8,176 +8,149 @@ html(lang="en").no-js
     include _head.jade
 
   body#index
-    h1.visuallyhidden Yellr Frontpage
     a(href="#main").visuallyhidden Skip to main content
     .container
-      include _header.jade
+      header.homepage-header
 
-      div#main.main
-        header.homepage-header
+        .hgroup
           .row
             .columns
               h1 Yellr
-              p Rochester, New York <br/>
+              p Rochester, New York
+                br
                 small B E T A
 
-        main.page-main
-          .row
-            .columns.medium-8
-              .row
-                .columns.medium-7
-                  h2 Assignments
-                  //- ul.latest-assignments-list
-                    //- sample <li> markup
-                    li
-                      h3
-                        a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
-                      a(href="article.html") Read
-                      p Published: 2015-02-18 19:19:19
-                      p Ends: 2015-12-31 23:59:59
-                      p Name: Yellr Feedback - World Wide
-                      p Organization: Rochester Institute of Technology
-                      p Organization description: RIT
-                      p Post count: 62
-                      p assignment_id: 1
-
-                  ul#latest-assignments.latest-assignments-list
-                  script#assignment-li-template(type="text/x-handlebars-template").
-                    {{#each assignments}}
-                      <li>
-                        <h3><a href="#">{{question_text}}</a></h3>
-                        <p>{{description}}</p>
-                      </li>
-                    {{/each}}
+        include forms/form-1.jade
 
 
+      main#main.main
+        .row
+          .columns.medium-8
+            header
+              h1.title-1 Latest Stories
+
+            //- ul.latest-stories-list.no-bullets
+              //- sample <li> markup
+              li
+                h2
+                  a(href="article.html") My Story!
+                p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
+                a(href="article.html") Read
+                p Published: 2015-02-18 19:19:19
+                p Ends: 2015-12-31 23:59:59
+                p Name: Yellr Feedback - World Wide
+                p Organization: Rochester Institute of Technology
+                p Organization description: RIT
+                p Post count: 62
+                p assignment_id: 1
+            //- "contents_rendered": "... the <b>story</b>!"
+            ul#latest-stories.latest-stories-list.no-bullets
+            <i class="fa fa-spinner fa-pulse"></i>
+            script#stories-li-template(type="text/x-handlebars-template").
+              {{#each stories}}
+                <li>
+                  <div class="row">
+                    {{#if banner_media_file_name}}
+                    <div class="columns medium-8">
+                    {{else}}
+                    <div class="columns medium-12">
+                    {{/if}}
+                      <h2 class="story-title">
+                        <a href="#" data-reveal-id="_{{story_unique_id}}">{{title}}</a>
+                      </h2>
+                      <ul class="inline-list">
+                        <li>Posted: {{publish_datetime}}</li>
+                        <li>Edited: {{edited_datetime}}</li>
+                      </ul>
+                      <p>{{description}}</p>
+                      <p>{{top_text}}</p>
+                      <ul class="inline-list">
+                        <li>{{author_first_name}} {{author_last_name}}</li>
+                        <li>{{author_email}}</li>
+                        <li>{{author_organization}}</li>
+                      </ul>
+                      <p>{{tags}}</p>
+                    </div>
+                    {{#if banner_media_file_name}}
+                    <div class="columns medium-4">
+                      <img src="http://yellr.net/media/{{banner_media_file_name}}">
+                    </div>
+                    {{/if}}
+                  </div>
+                  <div id="_{{story_unique_id}}" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+                    <div>{{{contents_rendered}}}</div>
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                  </div>
+                </li>
+              {{/each}}
+
+          .columns.medium-4
+            header
+              h1.title-1 Assignments
+            //- ul.latest-assignments-list.no-bullets
+              //- sample <li> markup
+              li
+                h3
+                  a(href="article.html") Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
+                a(href="article.html") Read
+                p Published: 2015-02-18 19:19:19
+                p Ends: 2015-12-31 23:59:59
+                p Name: Yellr Feedback - World Wide
+                p Organization: Rochester Institute of Technology
+                p Organization description: RIT
+                p Post count: 62
+                p assignment_id: 1
+
+            ul#latest-assignments.latest-assignments-list.no-bullets
+            <i class="fa fa-spinner fa-pulse"></i>
+            script#assignment-li-template(type="text/x-handlebars-template").
+              {{#each assignments}}
+                <li>
+                  <h3><a href="#">{{question_text}}</a></h3>
+                  <p>{{description}}</p>
+                </li>
+              {{/each}}
 
 
-                .columns.medium-5
-                  h2 Latest Stories
 
-                  //- ul.latest-stories-list
-                    //- sample <li> markup
-                    li
-                      h3
-                        a(href="article.html") My Story!
-                      p Voluptatibus magni ullam suscipit voluptate neque quas officia nemo nihil voluptatum iure eos deleniti, labore, voluptatem, dignissimos ipsa quae dolorem ad voluptas!
-                      a(href="article.html") Read
-                      p Published: 2015-02-18 19:19:19
-                      p Ends: 2015-12-31 23:59:59
-                      p Name: Yellr Feedback - World Wide
-                      p Organization: Rochester Institute of Technology
-                      p Organization description: RIT
-                      p Post count: 62
-                      p assignment_id: 1
-                  //- "contents_rendered": "... the <b>story</b>!"
-                  ul#latest-stories.latest-stories-list
-                  script#stories-li-template(type="text/x-handlebars-template").
-                    {{#each stories}}
-                      <li>
-                        <h3><a href="#">{{title}}</a></h3>
-                        <p>{{description}}</p>
-                        <p>{{top_text}}</p>
-                        <p>{{author_first_name}} {{author_last_name}}</p>
-                        <p>{{author_email}}</p>
-                        <p>{{author_organization}}</p>
-                        <p>{{banner_media_file_name}}</p>
-                        <p>{{story_unique_id}}</p>
-                        <p>{{tags}}</p>
-                        <p>{{banner_media_id}}</p>
-                        <p>{{edited_datetime}}</p>
-                        <p>{{publish_datetime}}</p>
-                        <div>{{{contents_rendered}}}</div>
-                      </li>
-                    {{/each}}
-
-
-            .columns.medium-4
-              div
-                p
-                  strong Submit tip
-                p
-                  em All posts on Yellr are anonymous.
-                p Curious about how we protect your identity? <a href="#">Click here to learn more.</a>
-                .form-container
-                  //- default to text form
-                  //- text
-                  form(data-media-type="text", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                    input(type="hidden", name="media_type", value="text")
-                    input(type="text", name="media_caption", placeholder="Title (optional)")
-                    textarea(name="media_text", rows="2", columns="10", placeholder="I said hey. What's going on?")
-
-                  //- images
-                  //- form(data-media-type="image", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                    input(type="hidden", name="media_type", value="image")
-                    input(type="file", name="media_file", multiple)
-                    textarea(name="media_text", rows="2", columns="10", placeholder="Add description (optional)")
-
-                  //- video
-                  //- form(data-media-type="video", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                    input(type="hidden", name="media_type", value="video")
-                    textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
-                    input(type="file", name="media_file", multiple)
-
-
-                  //- audio
-                  //- form(data-media-type="audio", method="post", accept-charset="utf-8", enctype="multipart/form-data")
-                    input(type="hidden", name="media_type", value="audio")
-                    input(type="file", name="media_file", multiple)
-                    textarea(name="media_text", rows="2", columns="10", placeholder="Add description")
-
-                  .right
-                    div.button
-                      i.fa.fa-plus
-                      | &nbsp;
-                      i.fa.fa-video-camera
-                    div.button
-                      i.fa.fa-plus
-                      | &nbsp;
-                      i.fa.fa-camera
-                    div.button
-                      i.fa.fa-plus
-                      | &nbsp;
-                      i.fa.fa-headphones
-                  input(type="submit", value="Submit")#submit-tip.button.right
-
-
-          .row
-            .columns
-              h2 Latest Posts
-              ul#latest-posts.latest-posts-list
-              //- {
-              //-     "last_name": null,
-              //-     "language_code": "en",
-              //-     "post_id": 5,
-              //-     "verified_user": false,
-              //-     "post_datetime": "2015-03-27 15:58:23.122724",
-              //-     "media_objects": [
-              //-         {
-              //-             "media_id": "9b6b9682-1bad-479f-8d1c-440a8f2bb1d3",
-              //-             "preview_file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112p.jpg",
-              //-             "file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112.jpg",
-              //-             "media_text": "",
-              //-             "caption": "I like our little city :).",
-              //-             "media_type_description": "An Image.",
-              //-             "media_type_name": "image"
-              //-         }
-              //-     ],
-              //-     "first_name": null,
-              //-     "question_text": "How will you be spending New Years Eve?",
-              //-     "is_up_vote": 0,
-              //-     "down_vote_count": 0,
-              //-     "has_voted": 0,
-              //-     "language_name": "English",
-              //-     "up_vote_count": 1
-              //- }
-              script#latest-posts-li-template(type="text/x-handlebars-template").
-                {{#each latest_posts}}
-                  <li>
-                    <p>response to {{question_text}}</p>
-                  </li>
-                {{/each}}
+        .row
+          .columns
+            h2.title-1 Latest Posts
+        .columns
+          ul#latest-posts.latest-posts-list.no-bullets
+          //- <i class="fa fa-spinner fa-pulse"></i>
+          //- {
+          //-     "last_name": null,
+          //-     "language_code": "en",
+          //-     "post_id": 5,
+          //-     "verified_user": false,
+          //-     "post_datetime": "2015-03-27 15:58:23.122724",
+          //-     "media_objects": [
+          //-         {
+          //-             "media_id": "9b6b9682-1bad-479f-8d1c-440a8f2bb1d3",
+          //-             "preview_file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112p.jpg",
+          //-             "file_name": "a81a24b7-9f3f-49af-8d50-da13f52ef112.jpg",
+          //-             "media_text": "",
+          //-             "caption": "I like our little city :).",
+          //-             "media_type_description": "An Image.",
+          //-             "media_type_name": "image"
+          //-         }
+          //-     ],
+          //-     "first_name": null,
+          //-     "question_text": "How will you be spending New Years Eve?",
+          //-     "is_up_vote": 0,
+          //-     "down_vote_count": 0,
+          //-     "has_voted": 0,
+          //-     "language_name": "English",
+          //-     "up_vote_count": 1
+          //- }
+          script#latest-posts-li-template(type="text/x-handlebars-template").
+            {{#each local_posts}}
+              <li>
+                <p>response to {{question_text}}</p>
+              </li>
+            {{/each}}
 
 
 
@@ -186,3 +159,4 @@ html(lang="en").no-js
       include _footer.jade
 
     include _scripts.jade
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>

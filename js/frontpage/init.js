@@ -5,10 +5,11 @@
 
         tag: 'Y E L L R',
 
+        forms: {},
         modules: {},
 
         UUID: 0,
-        BASE_URL: 'http://yellr.net/',
+        BASE_URL: 'https://yellr.net/',
         URLS: {},
         SETTINGS: {
             lat: 47,
@@ -26,38 +27,18 @@
                 this.modules[module].init();
             }
 
-            // generate the UUID
-            this.UUID = this.utils.guid();
-
-
-            // generate the URLS
-            this.URLS.assignments =     this.BASE_URL+'get_assignments.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.stories =         this.BASE_URL+'get_stories.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code,
-            this.URLS.notifications =   this.BASE_URL+'get_notifications.json?client_id='+this.UUID,
-            this.URLS.messages =        this.BASE_URL+'get_messages.json?client_id='+this.UUID,
-            this.URLS.profile =         this.BASE_URL+'todo',
-            this.URLS.upload =          this.BASE_URL+'upload_media.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.post =            this.BASE_URL+'publish_post.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.server_info =     this.BASE_URL+'server_info.json',
-            this.URLS.send_message =    this.BASE_URL+'create_response_message.json',
-            this.URLS.get_local_posts = this.BASE_URL+'get_local_posts.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code
-
-
-            $('#submit-tip').click(function () {
-                yellr.modules.submit.submit_tip();
-            });
-
-            $('#textarea').keydown(function (event) {
-                $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
-            });
 
 
 
-            // get latest assignments for homepage
+            // setup the homepage
             if ($('#index').length) {
 
-                // make call to the server
+                // setup the header form
+                yellr.forms.form_1.init();
 
+
+                // make call to the server
+                // ----------------------------------------
                 // 1 - get assignments
                 yellr.modules.server.get_assignments(function (assignments) {
 
@@ -69,6 +50,9 @@
                             assignments: assignments
                         }
                     });
+                    $('#latest-assignments').css('opacity', 1);
+                    $('#latest-assignments + i').css('display', 'none');
+                    $(document).foundation('reveal', 'reflow');
                 });
 
 
@@ -83,6 +67,9 @@
                             stories: stories
                         }
                     });
+                    $('#latest-stories').css('opacity', 1);
+                    $('#latest-stories + i').css('display', 'none');
+                    $(document).foundation('reveal', 'reflow');
                 });
 
 
@@ -97,53 +84,20 @@
                             local_posts: local_posts
                         }
                     });
+                    $('#latest-posts').css('opacity', 1);
+                    $('#latest-posts + i').css('display', 'none');
+                    $(document).foundation('reveal', 'reflow');
                 });
             }
 
         },
+
         // ----------------------------------------
-
-
 
         utils: {
 
-            guid: function (len, radix) {
-                /*!
-                    Math.uuid.js (v1.4)
-                    http://www.broofa.com
-                    mailto:robert@broofa.com
-                    http://www.broofa.com/2008/09/javascript-uuid-function/
-
-                    Copyright (c) 2010 Robert Kieffer
-                    Dual licensed under the MIT and GPL licenses.
-                */
-
-                var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-                var chars = CHARS, uuid = [], i;
-                radix = radix || chars.length;
-
-                if (len) {
-                    // Compact form
-                    for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
-                } else {
-                    // rfc4122, version 4 form
-                    var r;
-
-                    // rfc4122 requires these characters
-                    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-                    uuid[14] = '4';
-
-                    // Fill in random data.  At i==19 set the high bits of clock sequence as
-                    // per rfc4122, sec. 4.1.5
-                    for (i = 0; i < 36; i++) {
-                        if (!uuid[i]) {
-                          r = 0 | Math.random()*16;
-                          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
-                        }
-                    }
-                }
-
-                return uuid.join('');
+            feedback: function (feedback_string) {
+                alert(feedback_string);
             },
 
             render_template: function(settings) {

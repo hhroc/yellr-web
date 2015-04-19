@@ -2,53 +2,43 @@
 @import "elements";
 @import "typography";
 
-.main {
-    margin-top: $topbar-height;
-}
+
+@import "forms/forms";
 
 .homepage-header {
-    padding: 5rem 0;
     background-color: $yellow;
-    text-align: center;
+}
 
+.hgroup {
+    text-align: center;
+    padding: rem-calc(80) 0 rem-calc(50);
     h1 {
         margin-bottom: 2rem;
+    }
+    p {
+        margin-bottom: 0;
     }
 }
 
 
-
-
-// ----------------------------------------
-// ----------------------------------------
-
-.download-btn {
-  display: block;
-  text-decoration: none;
-  background: $green;
-  color: $white;
-  padding: 0.5rem 1.5rem;
-  text-align: center;
-  border-radius: 4px;
-  transition: background 0.3s ease-out;
-  margin-top: 2rem;
-  max-width: 14rem;
-  &:hover {
-    cursor: pointer;
-    background: darken($green, 10%);
-  }
+.title-1 {
+    text-transform: uppercase;
+    font-size: rem-calc(20);
+    // font-size: rem-calc(24);
+    font-weight: 500;
+    margin-bottom: rem-calc(32);
+}
+.story-title {
+    font-size: 3rem;
 }
 
-
-.submit-news-tip-btn {
-  background: $blue;
-  text-align: center;
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  transition: background 0.3s ease-out;
-  &:hover {
-    cursor: pointer;
-    background: lighten($blue, 10%);
-  }
+.main {
+    padding: (2*$column-gutter) 0;
+}
+.no-bullets {
+    list-style: none;
+    .js & {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
 }

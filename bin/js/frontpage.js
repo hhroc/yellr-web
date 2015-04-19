@@ -11,10 +11,11 @@
 
         tag: 'Y E L L R',
 
+        forms: {},
         modules: {},
 
         UUID: 0,
-        BASE_URL: 'http://yellr.net/',
+        BASE_URL: 'https://yellr.net/',
         URLS: {},
         SETTINGS: {
             lat: 47,
@@ -32,38 +33,18 @@
                 this.modules[module].init();
             }
 
-            // generate the UUID
-            this.UUID = this.utils.guid();
-
-
-            // generate the URLS
-            this.URLS.assignments =     this.BASE_URL+'get_assignments.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.stories =         this.BASE_URL+'get_stories.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code,
-            this.URLS.notifications =   this.BASE_URL+'get_notifications.json?client_id='+this.UUID,
-            this.URLS.messages =        this.BASE_URL+'get_messages.json?client_id='+this.UUID,
-            this.URLS.profile =         this.BASE_URL+'todo',
-            this.URLS.upload =          this.BASE_URL+'upload_media.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.post =            this.BASE_URL+'publish_post.json?cuid='+this.UUID+'&language_code='+yellr.SETTINGS.language.code+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng,
-            this.URLS.server_info =     this.BASE_URL+'server_info.json',
-            this.URLS.send_message =    this.BASE_URL+'create_response_message.json',
-            this.URLS.get_local_posts = this.BASE_URL+'get_local_posts.json?cuid='+this.UUID+'&lat='+yellr.SETTINGS.lat+'&lng='+yellr.SETTINGS.lng+'&language_code='+yellr.SETTINGS.language.code
-
-
-            $('#submit-tip').click(function () {
-                yellr.modules.submit.submit_tip();
-            });
-
-            $('#textarea').keydown(function (event) {
-                $("#display").text((event.metaKey || event.ctrlKey) && event.keyCode == 13);
-            });
 
 
 
-            // get latest assignments for homepage
+            // setup the homepage
             if ($('#index').length) {
 
-                // make call to the server
+                // setup the header form
+                yellr.forms.form_1.init();
 
+
+                // make call to the server
+                // ----------------------------------------
                 // 1 - get assignments
                 yellr.modules.server.get_assignments(function (assignments) {
 
@@ -75,6 +56,9 @@
                             assignments: assignments
                         }
                     });
+                    $('#latest-assignments').css('opacity', 1);
+                    $('#latest-assignments + i').css('display', 'none');
+                    $(document).foundation('reveal', 'reflow');
                 });
 
 
@@ -89,6 +73,9 @@
                             stories: stories
                         }
                     });
+                    $('#latest-stories').css('opacity', 1);
+                    $('#latest-stories + i').css('display', 'none');
+                    $(document).foundation('reveal', 'reflow');
                 });
 
 
@@ -103,53 +90,20 @@
                             local_posts: local_posts
                         }
                     });
+                    $('#latest-posts').css('opacity', 1);
+                    $('#latest-posts + i').css('display', 'none');
+                    $(document).foundation('reveal', 'reflow');
                 });
             }
 
         },
+
         // ----------------------------------------
-
-
 
         utils: {
 
-            guid: function (len, radix) {
-                /*!
-                    Math.uuid.js (v1.4)
-                    http://www.broofa.com
-                    mailto:robert@broofa.com
-                    http://www.broofa.com/2008/09/javascript-uuid-function/
-
-                    Copyright (c) 2010 Robert Kieffer
-                    Dual licensed under the MIT and GPL licenses.
-                */
-
-                var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-                var chars = CHARS, uuid = [], i;
-                radix = radix || chars.length;
-
-                if (len) {
-                    // Compact form
-                    for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
-                } else {
-                    // rfc4122, version 4 form
-                    var r;
-
-                    // rfc4122 requires these characters
-                    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-                    uuid[14] = '4';
-
-                    // Fill in random data.  At i==19 set the high bits of clock sequence as
-                    // per rfc4122, sec. 4.1.5
-                    for (i = 0; i < 36; i++) {
-                        if (!uuid[i]) {
-                          r = 0 | Math.random()*16;
-                          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
-                        }
-                    }
-                }
-
-                return uuid.join('');
+            feedback: function (feedback_string) {
+                alert(feedback_string);
             },
 
             render_template: function(settings) {
@@ -197,216 +151,94 @@
 (function ($, window, document, undefined) {
     'use strict';
 
-    yellr.modules.submit = {
 
-        tag: 'submit.js',
+    yellr.modules.user = {
 
+        tag: 'user',
+
+        // ----------------------------------------
         init: function () {
-            console.log(this.tag);
 
-            // get all the forms
-            this.$forms = $('.submit-form');
-
-            // submit text
-            // submit photo
-            // submit video
-            // submit audio
+            // generate the UUID
+            yellr.UUID = this.guid();
 
 
-            // this.$forms.each(function (i, ele) {
-            //     // on submit --> cal ajaxSubmit
-            //     $(ele).submit(function (event) {
-            //         event.preventDefault();
-            //         $(this).ajaxSubmit({
+            // generate the URLS
+            yellr.URLS.get_assignments =     yellr.BASE_URL+
+                                            'get_assignments.json?cuid=' + yellr.UUID +
+                                            '&language_code=' + yellr.SETTINGS.language.code +
+                                            '&lat=' + yellr.SETTINGS.lat +
+                                            '&lng=' + yellr.SETTINGS.lng;
+            yellr.URLS.get_stories =         yellr.BASE_URL +
+                                            'get_stories.json?cuid=' + yellr.UUID +
+                                            '&lat=' + yellr.SETTINGS.lat +
+                                            '&lng=' + yellr.SETTINGS.lng +
+                                            '&language_code=' + yellr.SETTINGS.language.code;
+            yellr.URLS.upload_media =        yellr.BASE_URL +
+                                            'upload_media.json?cuid=' + yellr.UUID +
+                                            '&language_code=' + yellr.SETTINGS.language.code +
+                                            '&lat=' + yellr.SETTINGS.lat +
+                                            '&lng=' + yellr.SETTINGS.lng;
+            yellr.URLS.publish_post =        yellr.BASE_URL +
+                                            'publish_post.json?cuid=' + yellr.UUID +
+                                            '&language_code=' + yellr.SETTINGS.language.code +
+                                            '&lat=' + yellr.SETTINGS.lat +
+                                            '&lng=' + yellr.SETTINGS.lng;
+            yellr.URLS.get_local_posts =    yellr.BASE_URL +
+                                            'get_local_posts.json?cuid=' + yellr.UUID +
+                                            '&lat=' + yellr.SETTINGS.lat +
+                                            '&lng=' + yellr.SETTINGS.lng +
+                                            '&language_code=' + yellr.SETTINGS.language.code;
+            yellr.URLS.server_info =        yellr.BASE_URL +
+                                            'server_info.json';
 
-            //             url: yellr.URLS.upload,
-            //             data: {
-            //                 client_id: yellr.UUID,
-            //                 media_type: 'image'
-            //             },
-            //             success: function (response) {
-            //                 console.log(response);
-            //                 if (response.success) {
-            //                     console.log('photo uploaded');
-            //                 } else {
-            //                     console.log('something went wrong');
-            //                 }
-            //             }
-
-            //         });
-
-            //         // return false to prevent normal browser submit and page navigation
-            //         return false;
-            //     });
-            // });
-
-
-            // [POST]
-            // media_type:
-
-            //     This field holds the type of the media.  Valid types include:
-
-            //         text - a text post.  there is no limit on it's length.
-            //         audio - an audio recording (should be in mp3 format)
-            //         video - a video recording (should be in mpg format)
-            //         image - an image (should be in jpg format)
-
-            //     If a media_type of 'text' is used, then the media_text field must contain a non-zero length string.  If
-            //     any other media_type is used, then the media_file field must contain file data.  Not following these
-            //     rules will produce a { "success": false } response.
-
-            // [POST]
-            // media_file:
-
-            //     This is of type file, and will be the media object that is being uploaded.  This is an optional field,
-            //     but the media_type filed must be 'text' if this is not included, else { "success": false } will be
-            //     returned.
-
-            // [POST]
-            // media_text
-
-            //     This is of type text, and will hold the text of the media post.  This is an optional field, but the
-            //     media_type field must be 'audio', 'video', or 'image' if this is not include, else a
-            //     { "success": false } will be returned.
-
-            // [POST]
-            // media_caption
-
-            //     This is of type text, and will hold an additional description of the media type.  This is an optional
-            //     and does not need to be included.
-
-
-
-
-        // // add extra media
-        // document.querySelector('#add-extra-media div.flex').onclick = function(e) {
-        //   if (e.target.nodeName === 'I' || e.target.nodeName === 'DIV') {
-        //     // what type of media are we going to add?
-        //     var form_type = (e.target.nodeName === 'I') ? e.target.parentNode.className : e.target.className,
-        //         form_template = '#'+form_type.split('add-')[1].split(' ')[0] + '-form-template';
-
-        //     // add the form
-        //     yellr.utils.render_template({
-        //       template: form_template,
-        //       target: '.forms-wrapper',
-        //       append: true
-        //     });
-        //   }
-        // };
-
-
+            console.log(this.tag, yellr.UUID);
 
         },
+        // ----------------------------------------
 
 
+        guid: function (len, radix) {
+            /*!
+                Math.uuid.js (v1.4)
+                http://www.broofa.com
+                mailto:robert@broofa.com
+                http://www.broofa.com/2008/09/javascript-uuid-function/
 
-        submit_tip: function(callback) {
+                Copyright (c) 2010 Robert Kieffer
+                Dual licensed under the MIT and GPL licenses.
+            */
 
-            console.log('get all the forms');
+            var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+            var chars = CHARS, uuid = [], i;
+            radix = radix || chars.length;
 
-            var $forms = $('.form-container form');
-            var media_objects = [];
-
-
-            console.log($forms.length);
-
-            for (var i = 0; i < $forms.length; i++) {
-              var form = $forms[i];
-              console.log(i, form);
-
-              // make sure the form is not empty [returns true or false]
-              if (this.validate_form(form)) {
-
-                $(form).ajaxSubmit({
-                  url: yellr.URLS.upload,
-                  data: {
-                    client_id: yellr.UUID
-                  },
-                  success: function (response) {
-                    console.log(response);
-                    if (response.success) {
-                      // add the media_id to our local array
-                      media_objects.push(response.media_id);
-                      if (media_objects.length === $forms.length) {
-                        yellr.modules.submit.publish_post(media_objects, function () {
-                            console.log('lol things?S');
-                          // reset to text
-                          // yellr.utils.render_template({
-                          //   template: '#text-form-template',
-                          //   target: '.forms-wrapper'
-                          // });
-                        });
-                      }
-                    } else {
-                      console.log('Something went wrong with upload_media...');
-                      console.log(response);
-                    }
-                  },
-                  clearForm: true
-                });
-                // end ajaxSubmit
-              }
-            }
-        },
-
-
-        validate_form: function (form) {
-
-            var $form = $(form);
-            var valid = false;
-
-            // what kind of form is it?
-            if ($form.attr('data-media-type') === 'text') {
-                // make sure textarea is not empty
-                console.log($form.find('textarea').val());
-                if ($form.find('textarea').val() !== '') valid = true;
-                else {
-                    alert('form is empty');
-                    // yellr.utils.notify('The text form is empty.');
-                }
-
+            if (len) {
+                // Compact form
+                for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
             } else {
-                // we are submitting media
-                // make sure input(name="media_file") is not empty
-                if (form.querySelector('input[name="media_file"]').value) valid = true;
-                else {
-                    alert('form is empty');
-                    yellr.utils.notify('Missing media file.');
+                // rfc4122, version 4 form
+                var r;
+
+                // rfc4122 requires these characters
+                uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+                uuid[14] = '4';
+
+                // Fill in random data.  At i==19 set the high bits of clock sequence as
+                // per rfc4122, sec. 4.1.5
+                for (i = 0; i < 36; i++) {
+                    if (!uuid[i]) {
+                      r = 0 | Math.random()*16;
+                      uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+                    }
                 }
             }
 
-
-            return valid;
-        },
-
-
-
-        publish_post: function(media_objects, callback) {
-
-            $.post(yellr.URLS.post, {
-                title: 'Web Submission',
-                client_id: yellr.UUID,
-                assignment_id: null,
-                language_code: yellr.SETTINGS.language.code,
-                lat: yellr.SETTINGS.lat,
-                lng: yellr.SETTINGS.lng,
-                media_objects: JSON.stringify(media_objects)
-            }, function(e) {
-                console.log('post published');
-                // generate new UUID after every post to help protect anonymity
-                yellr.UUID = yellr.utils.guid();
-                // yellr.utils.save();
-            }).done(function () {
-                if (callback) callback();
-            });
-
+            return uuid.join('');
         }
 
-
-
-
-
     }
+
 
 }($, window, window.document));
 
@@ -414,50 +246,33 @@
     'use strict';
 
     /**
-     * All the API calls for the front-page f Yellr
+     * All the API calls for the front-page of Yellr
      */
-    // get_assignments.json?client_id=<client_id>&language_code=<language_code>&lat=<lat>&lng=<lng>
 
 
     yellr.modules.server = {
 
         tag: 'server',
 
-        // modules: {},
-
-        // UUID: 0,
-        // BASE_URL: 'http://yellr.net/',
-        // URLS: {},
-        // SETTINGS: {
-        //     lat: 47,
-        //     lng: 40,
-        //     language: {
-        //         code: 'en'
-        //     }
-        // },
-
-        // ----------------------------------------
         init: function () {
-
-            console.log(this.tag);
-
-
+          console.log(this.tag);
         },
+
         // ----------------------------------------
 
-        get_assignments: function (callback) {
+        get_assignments: function (_callback) {
 
             /**
              * if a callback is provided it will pass the array to that function
              */
 
             // load the things
-            $.getJSON(yellr.URLS.assignments, function (response) {
+            $.getJSON(yellr.URLS.get_assignments, function (_response) {
 
-                if (response.success) {
+                if (_response.success) {
 
-                    if (callback) callback(response.assignments);
-                    else console.log(response.assignments);
+                    if (_callback) _callback(_response.assignments);
+                    else console.log(_response.assignments);
 
                 } else {
 
@@ -469,15 +284,15 @@
         },
 
 
-        get_stories: function (callback) {
+        get_stories: function (_callback) {
 
             // load the things
-            $.getJSON(yellr.URLS.stories, function (response) {
+            $.getJSON(yellr.URLS.get_stories, function (_response) {
 
-                if (response.success) {
+                if (_response.success) {
 
-                    if (callback) callback(response.stories);
-                    else console.log(response.stories);
+                    if (_callback) _callback(_response.stories);
+                    else console.log(_response.stories);
 
                 } else {
 
@@ -488,23 +303,227 @@
         },
 
 
-        get_local_posts: function (callback) {
+        get_local_posts: function (_callback) {
 
             // load the things
-            $.getJSON(yellr.URLS.get_local_posts, function (response) {
+            $.getJSON(yellr.URLS.get_local_posts, function (_response) {
 
-                console.log(response);
-                // if (response.success) {
+                console.log(_response);
+                if (_response.success) {
 
-                //     if (callback) callback(response.stories);
-                //     else console.log(response.stories);
+                    if (_callback) _callback(_response.stories);
+                    else console.log(_response.stories);
 
-                // } else {
+                } else {
 
-                //     console.log('lol - error in get_local_posts');
+                    console.log('lol - error in get_local_posts');
 
-                // }
+                }
             });
+        },
+
+
+
+        publish_post: function(_media_objects, _assignment_id, _callback) {
+
+            var assignment_id = _assignment_id || null;
+            console.log(assignment_id);
+
+            $.post(yellr.URLS.publish_post, {
+                assignment_id: null,
+                media_objects: JSON.stringify(_media_objects)
+            }, function() {
+                // console.log('post published');
+                // generate new UUID after every post to help protect anonymity
+                yellr.modules.user.init();
+            }).done(function () {
+                if (_callback) _callback();
+            });
+
+        }
+
+
+
+    }
+
+
+}($, window, window.document));
+
+(function ($, window, document, undefined) {
+    'use strict';
+
+
+    yellr.forms.form_1 = {
+
+        tag: 'form 1',
+
+        // ----------------------------------------
+        init: function () {
+
+
+            /**
+             * ============================================================
+             * ============================================================
+             */
+            // this wholesection needs to be cleaned up
+            // just UI things
+            // ----------------------------------------
+            var form_is_active = false;
+            var $input = $('#init-input'),
+                $extras = $('#form-extras');
+
+                $input.on('focus', function () {
+                    $extras.css('height', $extras.children().height());
+                });
+
+                // $input.on('blur', function () {
+                //     $extras.css('height', 0);
+                // });
+
+                $input.on('keydown', function () {
+                    if (form_is_active === false) {
+                        $input.off('blur');
+                        form_is_active = true;
+                    }
+                });
+
+                $input.on('change', function () {
+                    if ($input.val() === '') {
+                        $extras.css('height', 0);
+                        form_is_active = false;
+                        $input.on('blur', function () {
+                            $extras.css('height', 0);
+                        });
+                    }
+                });
+            // ----------------------------------------
+
+
+
+            // submitting and adding media to a submission
+            var $form_container = $('#form-container');
+
+
+            $('#report-form-1-submit').click(function () {
+
+                var media_objects = [];
+                var $forms = $('#form-container').children();
+                var $text_form = $('#homepage-intro-form');
+                var total = 1 + $forms.length; // text + media objects, 1 + n
+
+
+                // 1 - submit text
+                $text_form.ajaxSubmit({
+                    url: yellr.URLS.upload_media,
+                    clearForm: true,
+                    dataType: 'json',
+                    data: {
+                        description: $('#media_caption').val()
+                    },
+                    success: function (_response) {
+                        // console.log(_response);
+                        $('#media_caption').val('');
+                        if (_response.success) {
+                            media_objects.push(_response.media_id);
+                            if (media_objects.length === total) {
+                                yellr.modules.server.publish_post([_response.media_id], function () {
+                                    // console.log('tip submitted');
+                                });
+                            } else {
+                                console.log('Something went wrong with upload_media...');
+                                console.log(_response);
+                            }
+                        }
+
+                    }
+                });
+
+                // 2 - submit all the media forms
+                $.each($forms, function (i, ele) {
+                    var $form = $(ele);
+                    console.log($form);
+
+                    $form.ajaxSubmit({
+                        url: yellr.URLS.upload_media,
+                        clearForm: true,
+                        success: function (_response) {
+                            if (_response.success) {
+                                media_objects.push(_response.media_id);
+                                if (media_objects.length === total) {
+                                    yellr.modules.server.publish_post([_response.media_id], function () {
+                                        // console.log('tip submitted');
+                                    });
+                                }
+                            } else {
+                                console.log('Something went wrong with upload_media...');
+                                console.log(_response);
+                            }
+                        }
+                    });
+                    // end ajaxSubmit
+                });
+            });
+
+            function add_form(_type) {
+
+                // used to target the new form
+                var id_string = Foundation.utils.random_str(6);
+
+                // render  HTML form
+                yellr.utils.render_template({
+                    template: '#media-form-template',
+                    target: '#form-container',
+                    append: true,
+                    context: {
+                        media_type: _type,
+                        id_string: id_string
+                    }
+                });
+
+                // reference to the new form
+                var $new_form = $($form_container.children()[$form_container.length - 1]);
+                // hook up the cancel btn
+                var $cancel_btn = $new_form.find('*[data-cancel]');
+
+                $cancel_btn.on('click', function () {
+                    // var form =
+                    TweenMax.to($new_form, 0.3, {
+                        opacity: 0,
+                        ease: Ease.easeIn,
+                        // ease: Elastic.easeOut,
+                        onComplete: function () {
+                            $new_form.remove();
+                            $extras.css('height', $extras.children().height());
+                        }
+                    });
+                });
+
+
+                // cosmetic
+                $extras.css('height', $extras.children().height());
+            }
+
+
+            $('#add-photo-btn').click(function () {
+                add_form('image');
+            });
+            $('#add-video-btn').click(function () {
+                yellr.utils.feedback('Feature coming soon!');
+                // add_form('video');
+            });
+            $('#add-audio-btn').click(function () {
+                yellr.utils.feedback('Feature coming soon!');
+                // add_form('audio');
+            });
+
+            /**
+             * ----------------------------------------
+             * ----------------------------------------
+             */
+
+
+
+
         }
 
     }
